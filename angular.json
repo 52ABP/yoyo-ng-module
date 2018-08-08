@@ -3,35 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "delon": {
+    "yoyo-ng-module": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/delon-test",
+            "outputPath": "dist/yoyo-ng-module",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/@antv/g2/dist/g2.min.js",
-              "node_modules/@antv/data-set/dist/data-set.min.js",
-              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
-              "node_modules/ajv/dist/ajv.bundle.js",
-              "node_modules/qrious/dist/qrious.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -40,53 +43,40 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "buildOptimizer": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "delon:build"
+            "browserTarget": "yoyo-ng-module:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "delon:build:production"
+              "browserTarget": "yoyo-ng-module:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "delon:build"
+            "browserTarget": "yoyo-ng-module:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "packages/test.ts",
-            "karmaConfig": "./karma.conf.js",
+            "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "packages/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/@antv/g2/dist/g2.min.js",
-              "node_modules/@antv/data-set/dist/data-set.min.js",
-              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
-              "node_modules/ajv/dist/ajv.bundle.js",
-              "node_modules/qrious/dist/qrious.min.js"
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.css"
             ],
-            "codeCoverageExclude": [
-              "packages/abc/charts/**",
-              "packages/schematics/**",
-              "packages/testing/**"
-            ],
+            "scripts": [],
             "assets": [
+              "src/favicon.ico",
               "src/assets"
             ]
           }
@@ -95,136 +85,43 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json"
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
             ],
             "exclude": [
-              "**/node_modules/**",
-              "**/packages/cli/**"
+              "**/node_modules/**"
             ]
           }
         }
       }
     },
-    "delon-e2e": {
-      "root": "",
-      "sourceRoot": "",
+    "yoyo-ng-module-e2e": {
+      "root": "e2e/",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "delon:serve"
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "yoyo-ng-module:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "yoyo-ng-module:serve:production"
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [],
+            "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
-              "**/node_modules/**",
-              "**/packages/cli/**"
-            ]
-          }
-        }
-      }
-    },
-    "site": {
-      "root": "",
-      "sourceRoot": "site",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "site/dist",
-            "index": "site/index.html",
-            "main": "site/main.ts",
-            "tsConfig": "site/tsconfig.app.json",
-            "polyfills": "site/polyfills.ts",
-            "assets": [
-              "site/assets"
-            ],
-            "styles": [
-              "node_modules/ngx-simplemde/src/index.css",
-              "site/styles.less"
-            ],
-            "scripts": [
-              "node_modules/simplemde-antd/dist/simplemde.min.js",
-              "node_modules/enquire.js/dist/enquire.js",
-              "node_modules/@antv/g2/dist/g2.min.js",
-              "node_modules/@antv/data-set/dist/data-set.min.js",
-              "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
-              "node_modules/ajv/dist/ajv.bundle.js",
-              "node_modules/qrious/dist/qrious.min.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "site/environments/environment.ts",
-                  "with": "site/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "site:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "site:build:production"
-            }
-          }
-        }
-      }
-    },
-    "site-e2e": {
-      "root": "",
-      "sourceRoot": "",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "site:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [],
-            "exclude": [
-              "**/node_modules/**",
-              "**/packages/cli/**"
+              "**/node_modules/**"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "delon",
-  "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "less"
-    },
-    "@schematics/angular:directive": {
-      "prefix": "app"
-    }
-  }
+  "defaultProject": "yoyo-ng-module"
 }

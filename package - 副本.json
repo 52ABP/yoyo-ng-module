@@ -12,15 +12,12 @@
   "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
   "private": false,
   "scripts": {
+    "ng": "ng",
     "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
-    "ngc": "ngc",
-    "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
-    "bundling": "rollup -c",
-    "minify": "uglifyjs dist/bundles/abp-ng2-module.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/abp-ng2-module.umd.min.js",
-    "copy": "copyfiles LICENSE README.md dist",
-    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify && npm run copy",
-    "publish-to-npm": "cd dist && npm publish"
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "dependencies": {
     "@angular/animations": "^6.0.3",
@@ -33,7 +30,6 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
-    "rollup": "^0.64.1",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },
