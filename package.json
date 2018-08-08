@@ -1,0 +1,19 @@
+{
+  "name": "yoyo-ng-module",
+  "version": "1.0.0",
+  "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/52ABP/yoyo-ng-module.git",
+  "keywords": [],
+  "author": "ltm0203<werltm@hotmail.com>",
+  "license": "MIT",
+  "author.email": "werltm@hotmail.com",
+  "bugs": {
+    "url": "https://github.com/52ABP/yoyo-ng-module/issues"
+  },
+  "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
+  "private": false
+}
