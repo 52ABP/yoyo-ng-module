@@ -1,0 +1,46 @@
+<ng-container *ngIf="!breadcrumb; else breadcrumb">
+  <nz-breadcrumb *ngIf="paths && paths.length > 0">
+    <nz-breadcrumb-item *ngFor="let i of paths;let isLast=last;">
+      <ng-container *ngIf="i.link">
+          <a [routerLink]="i.link" *ngIf="!isLast&&home_link_enabled">       
+                <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+                {{i.title}}
+          </a>
+          <a *ngIf="!isLast&&!home_link_enabled">       
+              <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+              {{i.title}}
+          </a>
+          <a *ngIf="isLast">       
+                <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+                {{i.title}}
+          </a>
+       </ng-container>
+      <ng-container *ngIf="!i.link">
+          <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+          {{i.title}}
+      </ng-container>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+</ng-container>
+<div class="detail">
+  <div *ngIf="logo" class="logo"><ng-template [ngTemplateOutlet]="logo"></ng-template></div>
+  <div class="main">
+    <div class="row">
+      <h1 *ngIf="title" class="title">
+        {{title}}          
+          <span *ngIf="desc" class="text-sm text-grey-dark">
+            <nz-divider nzType="vertical"></nz-divider>
+            {{desc}}
+          </span>     
+      </h1>       
+      <div *ngIf="action" class="action">
+      <ng-template [ngTemplateOutlet]="action"></ng-template>
+      </div>       
+    </div>
+    <div class="row">
+      <div class="desc" (cdkObserveContent)="checkContent()" #conTpl><ng-content></ng-content><ng-template [ngTemplateOutlet]="content"></ng-template></div>
+      <div *ngIf="extra" class="extra"><ng-template [ngTemplateOutlet]="extra"></ng-template></div>
+    </div>
+  </div>
+</div>
+<ng-template [ngTemplateOutlet]="tab"></ng-template>

@@ -1,0 +1,34 @@
+{
+    "extends": "../tsconfig-build.json",
+
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@abp/*": ["./abp/*"],
+            "@delon/theme": ["./theme"],
+            "@delon/util": ["./util"]
+        },
+        "rootDir": ".",
+        "outDir": "dist",
+        "sourceMap": true,
+        "inlineSources": true,
+        "target": "es5",
+        "skipLibCheck": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ]
+    },
+
+    "files": [
+        "abp/index.ts",
+        "abc/public_api.ts",
+        "theme/public_api.ts",
+        "util/public_api.ts",
+        "typings.d.ts"
+    ],
+
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true
+    }
+}

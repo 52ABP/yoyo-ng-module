@@ -1,20 +1,39 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
+    "baseUrl": ".",
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "stripInternal": true,
     "experimentalDecorators": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "@abp/*": ["src/abp/*"],
+      "@delon/theme": ["src/theme"],
+      "@delon/util": ["src/util"]
+    },
+    "rootDir": ".",
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "skipLibCheck": false,
     "lib": [
-      "es2017",
+      "es2015",
       "dom"
     ]
+  },
+  "include": [
+    "./index.ts"
+  ],
+  "files": [
+    "index.ts",
+    "./src/typings.d.ts",
+    "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
   }
 }
