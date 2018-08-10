@@ -29,14 +29,14 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@delon/acl",
-      "@delon/theme",
-      "@delon/abc",
-      "@delon/util",
-      "@delon/auth",
-      "@delon/cache",
-      "@delon/mock",
-      "@delon/form",
+      "yoyo-ng-module/acl",
+      "yoyo-ng-module/theme",
+      "yoyo-ng-module/abc",
+      "yoyo-ng-module/util",
+      "yoyo-ng-module/auth",
+      "yoyo-ng-module/cache",
+      "yoyo-ng-module/mock",
+      "yoyo-ng-module/form",
       "ng-alain",
       "ng-zorro-antd"
     ]

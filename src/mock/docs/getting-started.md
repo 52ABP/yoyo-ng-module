@@ -8,7 +8,7 @@ type: Documents
 
 Mock 是指通过生成模拟数据让前端开发人员独立于后端进行开发，有时我们也会运用在测试环境中。
 
-`@delon/mock` 是一个简单 Mock 功能，包括以下几个特征：
+`yoyo-ng-module/mock` 是一个简单 Mock 功能，包括以下几个特征：
 
 - 任意 Angular 项目
 - 开发无侵入
@@ -17,10 +17,10 @@ Mock 是指通过生成模拟数据让前端开发人员独立于后端进行开
 
 ## 如何使用？
 
-安装 `@delon/mock` 依赖包：
+安装 `yoyo-ng-module/mock` 依赖包：
 
 ```bash
-npm install @delon/mock --save-dev
+npm install yoyo-ng-module/mock --save-dev
 ```
 
 在根模块 `AppModule` 导入 [Mock 规则数据](/mock/rule)和 `DelonMockModule`；

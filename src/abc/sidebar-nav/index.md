@@ -5,7 +5,7 @@ cols: 1
 module: AdSidebarNavModule
 ---
 
-ng-alain 左边主菜单，依赖于 `@delon/theme`。
+ng-alain 左边主菜单，依赖于 `yoyo-ng-module/theme`。
 
 组件的数据来自 `MenuService`，其结构为 [Menu](https://github.com/cipchk/delon/blob/master/packages/theme/services/menu/interface.ts)，同时对 `MenuService` 的操作会直接同步主菜单组件。
 
@@ -57,7 +57,7 @@ badge_dot | `boolean` | 徽标数，显示小红点
 badge_status | `string` | 徽标 Badge 颜色 （默认：error， 所有颜色值见：https://github.com/cipchk/ng-alain/blob/master/_documents/utils.md#色彩）
 hide | `boolean` | 是否隐藏菜单
 hideInBreadcrumb | `boolean` | 隐藏面包屑，指 `page-header` 组件的自动生成面包屑时有效
-acl | `any` | ACL配置，若导入 `@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值
+acl | `any` | ACL配置，若导入 `yoyo-ng-module/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值
 shortcut | `boolean` | 是否快捷菜单项
 shortcut_root | `boolean` | 快捷菜单根节点
 reuse | `boolean` | 是否允许复用，需配合 `reuse-tab` 组件

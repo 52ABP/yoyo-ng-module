@@ -20,8 +20,8 @@ import { MenuService, SettingsService, MenuItem } from 'yoyo-ng-module/theme';
 
 import { Nav } from './interface';
 
-const SHOWCLS = 'ad-nav__floating-show';
-const FLOATINGCLS = 'ad-nav__floating';
+const SHOWCLS = 'nav-floating-show';
+const FLOATINGCLS = 'nav-floating';
 
 @Component({
   selector: 'sidebar-nav',
@@ -67,7 +67,8 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
 
   private floatingAreaClickHandle(e: MouseEvent) {
     e.stopPropagation();
-    const linkNode = e.target as HTMLElement;
+    e.preventDefault();
+    const linkNode = e.target as Element;
     if (linkNode.nodeName !== 'A') {
       return false;
     }
@@ -75,10 +76,6 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     if (url && url.startsWith('#')) {
       url = url.slice(1);
     }
-    if (linkNode.dataset!.type === 'external') {
-      return true;
-    }
-
     // 如果配置了bashHref 则去掉baseHref
     const baseHerf = this.locationStrategy.getBaseHref();
     if (baseHerf) {
@@ -87,7 +84,6 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(url);
     this.onSelect(this.menuSrv.getPathByUrl(url).pop());
     this.hideAll();
-    e.preventDefault();
     return false;
   }
 
@@ -218,7 +214,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
 
   private underPad() {
     if (window.innerWidth < 992 && !this.settings.layout.collapsed) {
-      setTimeout(() => this.settings.setLayout('collapsed', true));
+      this.settings.setLayout('collapsed', true);
     }
   }
 

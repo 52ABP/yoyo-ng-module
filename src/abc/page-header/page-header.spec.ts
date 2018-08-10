@@ -9,7 +9,7 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterModule, Router } from '@angular/router';
-import { APP_BASE_HREF, I18nSelectPipe } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 import {
   MenuService,
   AlainThemeModule,
@@ -63,8 +63,6 @@ describe('abc: page-header', () => {
     const el = dl.query(By.css(cls)).nativeElement as HTMLElement;
     expect(el.textContent.trim()).toBe(value);
   }
-
-  afterEach(() => context.comp.ngOnDestroy());
 
   describe('[property]', () => {
     beforeEach(() => createComp());
@@ -158,6 +156,32 @@ describe('abc: page-header', () => {
       expect(dl.queryAll(By.css('nz-breadcrumb-item')).length).toBe(2);
     });
 
+    it('should be i18n', () => {
+      menuSrv.add([
+        {
+          text: 'root',
+          i18n: 'root-i18n',
+          children: [
+            {
+              text: '1-1',
+              link: '/1-1',
+              children: [
+                { text: '1-1-1', link: '/1-1/1-1-1' },
+                { text: '1-1-2', link: '/1-1/1-1-2' },
+              ],
+            },
+          ],
+        },
+      ]);
+      spyOnProperty(route, 'url').and.returnValue('/1-1/1-1-2');
+      spyOn(i18n, 'fanyi');
+      expect(i18n.fanyi).not.toHaveBeenCalled();
+      context.autoBreadcrumb = true;
+      fixture.detectChanges();
+      expect(dl.queryAll(By.css('nz-breadcrumb-item')).length).toBe(3);
+      expect(i18n.fanyi).toHaveBeenCalled();
+    });
+
     describe('#home', () => {
       it('shoule be hide home', () => {
         spyOnProperty(route, 'url').and.returnValue('/1-1/1-1-2');
@@ -177,134 +201,79 @@ describe('abc: page-header', () => {
         expect(i18n.fanyi).toHaveBeenCalled();
       });
     });
+  });
 
-    describe('[i18n]', () => {
-      it('should be auto fanyi i18n text', () => {
-        menuSrv.add([
-          {
-            text: 'root',
-            i18n: 'root-i18n',
-            children: [
-              {
-                text: '1-1',
-                link: '/1-1',
-                children: [
-                  { text: '1-1-1', link: '/1-1/1-1-1' },
-                  { text: '1-1-2', link: '/1-1/1-1-2' },
-                ],
-              },
-            ],
-          },
-        ]);
-        spyOnProperty(route, 'url').and.returnValue('/1-1/1-1-2');
-        spyOn(i18n, 'fanyi');
-        expect(i18n.fanyi).not.toHaveBeenCalled();
-        context.autoBreadcrumb = true;
-        fixture.detectChanges();
-        expect(dl.queryAll(By.css('nz-breadcrumb-item')).length).toBe(3);
-        expect(i18n.fanyi).toHaveBeenCalled();
-      });
-      it('should be refresh when i18n changed', () => {
-        spyOn(context.comp, 'refresh');
-        expect(context.comp.refresh).not.toHaveBeenCalled();
-        i18n.use('en');
-        expect(context.comp.refresh).toHaveBeenCalled();
-      });
+  describe('[generateion title]', () => {
+    let menuSrv: MenuService;
+    let route: Router;
+    let i18n: AlainI18NService;
+    let cog: AdPageHeaderConfig;
+    beforeEach(() => {
+      createComp();
+      route = injector.get(Router);
+      cog = injector.get(AdPageHeaderConfig);
+      i18n = injector.get(ALAIN_I18N_TOKEN);
+      menuSrv = injector.get(MenuService);
+
+      context.title = undefined;
+      context.autoTitle = true;
+    });
+
+    it('should be auto generate title via menu data', () => {
+      const text = 'asdf';
+      spyOn(menuSrv, 'getPathByUrl').and.returnValue([{ text }]);
+      fixture.detectChanges();
+      checkValue('.title', text);
+    });
+
+    it('support i18n', () => {
+      const text = 'asdf';
+      const i18n = 'i18n';
+      spyOn(menuSrv, 'getPathByUrl').and.returnValue([{ text, i18n }]);
+      fixture.detectChanges();
+      checkValue('.title', i18n);
     });
   });
 
-  describe('#title', () => {
-    it('should be custom title template', () => {
-      TestBed.overrideTemplate(
-        TestComponent,
-        `<page-header #comp [title]="titleTpl">
-          <ng-template #titleTpl>
-            <div class="custom-title">title</div>
-          </ng-template>
-        </page-header>`,
-      );
+  describe('[auto sync title]', () => {
+    class MockTitle {
+      setTitle = jasmine.createSpy()
+    }
+    class MockReuse {
+      set title(val: string) {}
+      get title(): string { return ''; }
+    }
+    let titleSrv: TitleService;
+    let reuseSrv: ReuseTabService;
+    beforeEach(() => {
+      TestBed.overrideProvider(TitleService, {
+        useFactory: () => new MockTitle(),
+        deps: [],
+      });
+      TestBed.overrideProvider(ReuseTabService, {
+        useFactory: () => new MockReuse(),
+        deps: [],
+      });
       createComp();
-      expect(dl.queryAll(By.css('.custom-title')).length).toBe(1);
+      titleSrv = injector.get(TitleService);
+      reuseSrv = injector.get(ReuseTabService);
+
+      context.titleSync = true;
     });
 
-    describe('[generateion title]', () => {
-      let menuSrv: MenuService;
-      let route: Router;
-      let i18n: AlainI18NService;
-      let cog: AdPageHeaderConfig;
-      beforeEach(() => {
-        createComp();
-        route = injector.get(Router);
-        cog = injector.get(AdPageHeaderConfig);
-        i18n = injector.get(ALAIN_I18N_TOKEN);
-        menuSrv = injector.get(MenuService);
-
-        context.title = undefined;
-        context.autoTitle = true;
-      });
-
-      it('should be auto generate title via menu data', () => {
-        const text = 'asdf';
-        spyOn(menuSrv, 'getPathByUrl').and.returnValue([{ text }]);
-        fixture.detectChanges();
-        checkValue('.title', text);
-      });
-
-      it('support i18n', () => {
-        const text = 'asdf';
-        const i18n = 'i18n';
-        spyOn(menuSrv, 'getPathByUrl').and.returnValue([{ text, i18n }]);
-        fixture.detectChanges();
-        checkValue('.title', i18n);
-      });
-    });
-
-    describe('[auto sync title]', () => {
-      class MockTitle {
-        setTitle = jasmine.createSpy();
-      }
-      class MockReuse {
-        set title(val: string) {}
-        get title(): string {
-          return '';
-        }
-      }
-      let titleSrv: TitleService;
-      let reuseSrv: ReuseTabService;
-      beforeEach(() => {
-        TestBed.overrideProvider(TitleService, {
-          useFactory: () => new MockTitle(),
-          deps: [],
-        });
-        TestBed.overrideProvider(ReuseTabService, {
-          useFactory: () => new MockReuse(),
-          deps: [],
-        });
-        createComp();
-        titleSrv = injector.get(TitleService);
-        reuseSrv = injector.get(ReuseTabService);
-
-        context.syncTitle = true;
-      });
-
-      it('should be auto sync title of document and result-tab', () => {
-        const spyReuseTitle = spyOnProperty(
-          reuseSrv,
-          'title',
-          'set',
-        ).and.callThrough();
-        context.title = 'test';
-        fixture.detectChanges();
-        expect(titleSrv.setTitle).toHaveBeenCalled();
-        expect(spyReuseTitle).toHaveBeenCalled();
-      });
+    it('should be auto sync title of document and result-tab', () => {
+      const spyReuseTitle = spyOnProperty(reuseSrv, 'title', 'set').and.callThrough();
+      context.title = 'test';
+      fixture.detectChanges();
+      expect(titleSrv.setTitle).toHaveBeenCalled();
+      expect(spyReuseTitle).toHaveBeenCalled();
     });
   });
 });
 
 @Component({
   template: `
-    <page-header #comp [title]="title" [autoTitle]="autoTitle" [syncTitle]="syncTitle"
+    <page-header #comp [title]="title" [autoTitle]="autoTitle" [titleSync]="titleSync"
         [autoBreadcrumb]="autoBreadcrumb" [home]="home" [home_i18n]="home_i18n" [home_link]="home_link">
         <ng-template #breadcrumb><div class="breadcrumb">面包屑</div></ng-template>
         <ng-template #logo><div class="logo">logo</div></ng-template>
@@ -320,8 +289,8 @@ class TestComponent {
   title = '所属类目';
   autoBreadcrumb: boolean;
   autoTitle: boolean;
-  syncTitle: boolean;
   home: string;
   home_link: string;
   home_i18n: string;
+  titleSync: boolean;
 }

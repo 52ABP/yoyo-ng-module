@@ -225,8 +225,10 @@ export class ReuseTabService implements OnDestroy {
     if (route && route.data && (route.data.titleI18n || route.data.title))
       return <ReuseTitle>{ text: route.data.title, i18n: route.data.titleI18n };
 
-    const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-    return menu ? { text: menu.name } : { text: url };
+    // const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+    // return menu ? { text: menu.name } : { text: url };
+    const menu = this.getMenu(url);
+    return { text: menu.name };
   }
 
   /**

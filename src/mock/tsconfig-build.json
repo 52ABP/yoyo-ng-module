@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "rootDir": ".",
     "paths": {},
-    "outDir": "../../@delon/mock"
+    "outDir": "../../yoyo-ng-module/mock"
   },
 
   "files": ["public_api.ts"],
@@ -15,6 +15,6 @@
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "@delon/mock"
+    "flatModuleId": "yoyo-ng-module/mock"
   }
 }

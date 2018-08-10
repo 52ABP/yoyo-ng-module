@@ -39,7 +39,7 @@ import { SimpleTableComponent } from './simple-table.component';
 import {
   AlainI18NServiceFake,
   AlainI18NService,
-} from '../../theme/src/services/i18n/i18n';
+} from '../../theme/services/i18n/i18n';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchDropDown } from '../../testing';
 import { SimpleTableExport } from './simple-table-export';
@@ -523,17 +523,9 @@ describe('abc: simple-table', () => {
           ];
           page.newColumn(columns).expectCell('del', 1, 1, 'nz-popconfirm');
           // mock trigger
-          comp._btnClick(
-            new MouseEvent('click'),
-            comp._data[0],
-            comp._columns[0].buttons[0],
-          );
+          comp.btnClick(comp._data[0], comp._columns[0].buttons[0]);
           expect(columns[0].buttons[1].click).not.toHaveBeenCalled();
-          comp._btnClick(
-            new MouseEvent('click'),
-            comp._data[0],
-            comp._columns[0].buttons[1],
-          );
+          comp.btnClick(comp._data[0], comp._columns[0].buttons[1]);
           expect(columns[0].buttons[1].click).toHaveBeenCalled();
         });
         it(
@@ -665,12 +657,7 @@ describe('abc: simple-table', () => {
                 {
                   title: '',
                   buttons: [
-                    {
-                      text: 'a',
-                      type: 'modal',
-                      click: jasmine.createSpy(),
-                      size: 'sm',
-                    },
+                    { text: 'a', type: 'modal', click: jasmine.createSpy(), size: 'sm' },
                   ],
                 },
               ];
@@ -691,12 +678,7 @@ describe('abc: simple-table', () => {
                 {
                   title: '',
                   buttons: [
-                    {
-                      text: 'a',
-                      type: 'modal',
-                      click: jasmine.createSpy(),
-                      modalOptions: {},
-                    },
+                    { text: 'a', type: 'modal', click: jasmine.createSpy(), modalOptions: {} },
                   ],
                 },
               ];
@@ -752,21 +734,17 @@ describe('abc: simple-table', () => {
           page.newColumn([
             { title: '1', index: 'id', fixed: 'left', width: '100px' },
             { title: '2', index: 'id', fixed: 'left', width: '100px' },
-            { title: '3', index: 'id', fixed: 'left', width: '100px' },
           ]);
           expect(page.getCell(1, 1).style.left).toBe('0px');
           expect(page.getCell(1, 2).style.left).toBe('100px');
-          expect(page.getCell(1, 3).style.left).toBe('200px');
         });
         it('should be fixed right column', () => {
           page.newColumn([
             { title: '1', index: 'id', fixed: 'right', width: '100px' },
             { title: '2', index: 'id', fixed: 'right', width: '100px' },
-            { title: '3', index: 'id', fixed: 'right', width: '100px' },
           ]);
-          expect(page.getCell(1, 1).style.right).toBe('200px');
-          expect(page.getCell(1, 2).style.right).toBe('100px');
-          expect(page.getCell(1, 3).style.right).toBe('0px');
+          expect(page.getCell(1, 1).style.right).toBe('100px');
+          expect(page.getCell(1, 2).style.right).toBe('0px');
         });
       });
     });
@@ -959,9 +937,7 @@ describe('abc: simple-table', () => {
           fixture.detectChanges();
           const h = httpMock.expectOne(w => true) as TestRequest;
           expect(context.comp.zeroIndexedOnPage).toBe(true);
-          expect(h.request.params.get('pi').toString()).toBe(
-            (context.pi - 1).toString(),
-          );
+          expect(h.request.params.get('pi').toString()).toBe((context.pi - 1).toString());
         });
         it('should be empty array when invalid list', () => {
           fixture.detectChanges();
@@ -1031,7 +1007,6 @@ describe('abc: simple-table', () => {
         describe('#multiSort', () => {
           beforeEach(() =>
             (context.columns = [
-              { title: '', index: 'index' },
               {
                 title: '',
                 index: 'index',
@@ -1108,7 +1083,7 @@ describe('abc: simple-table', () => {
                 '.ant-table-filter-dropdown .ant-dropdown-menu-item:nth-child(2) label',
               );
               // mock click confirm
-              comp._filterConfirm(comp._columns[0]);
+              comp.filterConfirm(comp._columns[0]);
               fixture.detectChanges();
               const h = httpMock.expectOne(w => true) as TestRequest;
               expect(h.request.urlWithParams).toContain(`id=fv1,fv2`);
@@ -1125,7 +1100,7 @@ describe('abc: simple-table', () => {
             'should be clear filter',
             fakeAsync(() => {
               // mock click confirm
-              comp._filterClear(comp._columns[0]);
+              comp.filterClear(comp._columns[0]);
               fixture.detectChanges();
               const h = httpMock.expectOne(w => true) as TestRequest;
               expect(h.request.urlWithParams).not.toContain(`id=fv1,fv2`);
@@ -1148,7 +1123,7 @@ describe('abc: simple-table', () => {
             );
             httpMock.expectOne(w => true).flush({});
             // mock click confirm
-            comp._filterConfirm(comp._columns[0]);
+            comp.filterConfirm(comp._columns[0]);
             fixture.detectChanges();
             const h = httpMock.expectOne(w => true) as TestRequest;
             expect(h.request.urlWithParams).toContain(`a=1`);
@@ -1227,7 +1202,7 @@ describe('abc: simple-table', () => {
       describe('#frontPagination', () => {
         // `true` 由 `simple-table` 根据 `data` 长度受控分页，包括：排序、过滤等
         describe('with true', () => {
-          beforeEach(() => (context.frontPagination = true));
+          beforeEach(() => context.frontPagination = true);
           it('should be control paged by data', () => {
             context.pi = 1;
             context.ps = 3;
@@ -1394,7 +1369,7 @@ describe('abc: simple-table', () => {
             );
             page.expectCurrentPageTotal(PS);
             // mock click confirm
-            comp._filterConfirm(comp._columns[0]);
+            comp.filterConfirm(comp._columns[0]);
             fixture.detectChanges();
             page.expectCurrentPageTotal(1);
             page.asyncEnd();
@@ -1497,17 +1472,6 @@ describe('abc: simple-table', () => {
         expect(comp.extraParams.a).toBe(1);
         expect(comp.pi).toBe(1);
       });
-      it('should be clean check, radio, filter, sort', fakeAsync(() => {
-        spyOn(comp, 'clearCheck');
-        spyOn(comp, 'clearRadio');
-        spyOn(comp, 'clearFilter');
-        spyOn(comp, 'clearSort');
-        comp.reset();
-        expect(comp.clearCheck).toHaveBeenCalled();
-        expect(comp.clearRadio).toHaveBeenCalled();
-        expect(comp.clearFilter).toHaveBeenCalled();
-        expect(comp.clearSort).toHaveBeenCalled();
-      }));
     });
     describe('#export', () => {
       let exportSrv: SimpleTableExport;
@@ -1564,11 +1528,10 @@ describe('abc: simple-table', () => {
 
   describe('[i18n]', () => {
     let i18nSrv: AlainI18NService;
-    let curLang = 'en';
     beforeEach(() => {
       genModule({ i18n: true });
       i18nSrv = injector.get(ALAIN_I18N_TOKEN);
-      spyOn(i18nSrv, 'fanyi').and.callFake(() => curLang);
+      spyOn(i18nSrv, 'fanyi');
     });
     it('in title', () => {
       page.newColumn([{ title: '', index: 'id' }]);
@@ -1583,15 +1546,6 @@ describe('abc: simple-table', () => {
         { title: '', index: 'id', buttons: [{ text: '', i18n: 'a' }] },
       ]);
       expect(i18nSrv.fanyi).toHaveBeenCalled();
-    });
-    it('should be re-render columns when i18n changed', () => {
-      page
-        .newColumn([{ title: '', i18n: curLang, index: 'id' }])
-        .expectHead(curLang, 'id');
-      curLang = 'zh';
-      i18nSrv.use(curLang);
-      fixture.detectChanges();
-      page.expectHead(curLang, 'id');
     });
   });
 
@@ -1675,38 +1629,6 @@ describe('abc: simple-table', () => {
     });
   });
 
-  describe('[row events]', () => {
-    beforeEach(() => {
-      genModule({ minColumn: true });
-      context.rowClickTime = 10;
-      fixture.detectChanges();
-    });
-    it(`should be row click`, (done: () => void) => {
-      expect(context.rowClick).not.toHaveBeenCalled();
-      expect(context.rowDblClick).not.toHaveBeenCalled();
-      (page.getCell() as HTMLElement).click();
-      fixture.detectChanges();
-      setTimeout(() => {
-        expect(context.rowClick).toHaveBeenCalled();
-        expect(context.rowDblClick).not.toHaveBeenCalled();
-        done();
-      }, 25);
-    });
-    it(`should be row double click`, (done: () => void) => {
-      expect(context.rowClick).not.toHaveBeenCalled();
-      expect(context.rowDblClick).not.toHaveBeenCalled();
-      const cell = page.getCell() as HTMLElement;
-      cell.click();
-      cell.click();
-      fixture.detectChanges();
-      setTimeout(() => {
-        expect(context.rowClick).not.toHaveBeenCalled();
-        expect(context.rowDblClick).toHaveBeenCalled();
-        done();
-      }, 25);
-    });
-  });
-
   class PageObject {
     constructor() {
       spyOn(context, 'reqError');
@@ -1715,8 +1637,6 @@ describe('abc: simple-table', () => {
       spyOn(context, 'radioChange');
       spyOn(context, 'sortChange');
       spyOn(context, 'filterChange');
-      spyOn(context, 'rowClick');
-      spyOn(context, 'rowDblClick');
       comp = context.comp;
     }
     get(cls: string): DebugElement {
@@ -1915,11 +1835,7 @@ describe('abc: simple-table', () => {
         (checkboxChange)="checkboxChange()"
         (radioChange)="radioChange()"
         (sortChange)="sortChange()"
-        (filterChange)="filterChange()"
-        [rowClickTime]="rowClickTime"
-        (rowClick)="rowClick()"
-        (rowDblClick)="rowDblClick()"
-    >
+        (filterChange)="filterChange()">
     </simple-table>`,
 })
 class TestComponent {
@@ -1961,7 +1877,4 @@ class TestComponent {
   radioChange() {}
   sortChange() {}
   filterChange() {}
-  rowClickTime = 200;
-  rowClick() {}
-  rowDblClick() {}
 }

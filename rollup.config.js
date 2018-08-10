@@ -1,4 +1,32 @@
+import replace from 'rollup-plugin-replace';
+
+
+const listOfDateFns = [
+  'format',
+  'parse',
+  'addSeconds',
+  'addWeeks',
+  'startOfWeek',
+  'endOfWeek',
+  'subWeeks',
+  'startOfMonth',
+  'endOfMonth',
+  'subMonths',
+  'startOfYear',
+  'endOfYear',
+  'subYears',
+  'addDays',
+];
+
+const listOfReplace = listOfDateFns.map(name => {
+  const map = {};
+  map[`import * as ${name}`] = `import ${name}`;
+  return replace(map);
+});
+const plugins = [...listOfReplace];
+
 export default {
+  plugins,
   entry: 'dist/index.js',
   dest: 'dist/bundles/yoyo-ng-module.umd.js',
   sourceMap: false,

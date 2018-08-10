@@ -7,7 +7,7 @@ title: 基础
 
 ```ts
 import { Component } from "@angular/core";
-import { SimpleTableColumn } from "@delon/abc";
+import { SimpleTableColumn } from "yoyo-ng-module/abc";
 
 @Component({
   selector: "app-demo",
@@ -27,7 +27,7 @@ export class DemoComponent {
     { title: "头像", type: "img", width: "50px", index: "picture.thumbnail" },
     { title: "邮箱", index: "email" },
     { title: "电话", index: "phone" },
-    { title: "注册时间", type: "date", index: "registered.date" }
+    { title: "注册时间", type: "date", index: "registered" }
   ];
 }
 ```

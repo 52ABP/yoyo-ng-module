@@ -91,11 +91,9 @@ export interface SimpleTableColumn {
    */
   renderTitle?: string;
   /**
-   * 列宽（数字型表示 `px` 值），例如：`100`、`10%`、`100px`
-   *
-   * **注意：** 固定列不支持百分比
+   * 列宽，例如：`10%`、`100px`
    */
-  width?: string | number;
+  width?: string;
   /**
    * 排序的默认受控属性
    * - 只支持同时对一列进行排序，除非指定 `multiSort`，建议后端支持时使用
@@ -452,24 +450,5 @@ export interface SimpleTableTagValue {
    * - 预设：geekblue,blue,purple,success,red,volcano,orange,gold,lime,green,cyan
    * - 色值：#f50,#ff0
    */
-  color?:
-    | 'geekblue'
-    | 'blue'
-    | 'purple'
-    | 'success'
-    | 'red'
-    | 'volcano'
-    | 'orange'
-    | 'gold'
-    | 'lime'
-    | 'green'
-    | 'cyan'
-    | string;
-}
-
-/** 行单击参数 */
-export interface SimpleTableRowClick {
-  e?: Event;
-  item?: SimpleTableData;
-  index?: number;
+  color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }

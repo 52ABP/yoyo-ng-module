@@ -13,8 +13,8 @@
       "yoyo-ng-module":["src/"],
       "yoyo-ng-module/*":["src/*"],
       "@abp/*": ["src/abp/*"],
-      "@delon/theme": ["src/theme"],
-      "@delon/util": ["src/util"]
+      "yoyo-ng-module/theme": ["src/theme"],
+      "yoyo-ng-module/util": ["src/util"]
     },
     "rootDir": ".",
     "outDir": "dist",

@@ -1,16 +1,14 @@
 @import '../../../theme/styles/default';
-// TIPS: `content` 变更为 `desc`
 .ad-ph {
   display: block;
   background: @component-background;
-  padding: 16px 32px 0 32px;
+  padding: 16px 32px 0;
   border-bottom: @border-width-base @border-style-base @border-color-split;
   .detail {
     display: flex;
   }
   .row {
     display: flex;
-    width: 100%;
   }
   .ant-breadcrumb {
     margin-bottom: 16px;
@@ -36,11 +34,6 @@
     font-size: 20px;
     font-weight: 500;
     color: @heading-color;
-    small {
-      font-weight: normal;
-      font-size: 14px;
-      padding-left: @layout-gutter;
-    }
   }
   .action {
     margin-left: 56px;
@@ -54,52 +47,43 @@
       margin-right: 0;
     }
   }
-
   .title,
-  .desc {
-    flex: auto;
-  }
-
   .action,
+  .desc,
   .extra,
   .main {
-    flex: 0 1 auto;
+    flex: auto;
   }
-
-  .main {
-    width: 100%;
-  }
-
   .title,
   .action {
     margin-bottom: 16px;
   }
-
   .logo,
   .desc,
   .extra {
     margin-bottom: 16px;
   }
-
   .action,
   .extra {
     text-align: right;
   }
-
   .extra {
     margin-left: 88px;
     min-width: 242px;
   }
+
   @media screen and (max-width: @screen-xl) {
     .extra {
       margin-left: 44px;
     }
   }
+
   @media screen and (max-width: @screen-lg) {
     .extra {
       margin-left: 20px;
     }
   }
+
   @media screen and (max-width: @screen-md) {
     .row {
       display: block;
@@ -110,11 +94,13 @@
       text-align: left;
     }
   }
+
   @media screen and (max-width: @screen-sm) {
     .detail {
       display: block;
     }
   }
+
   @media screen and (max-width: @screen-xs) {
     .action {
       .ant-btn-group,

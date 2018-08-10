@@ -4,14 +4,14 @@ title: 开始使用
 type: Documents
 ---
 
-@delon/util 是一组日常普通使用的工具函数的集合。
+yoyo-ng-module/util 是一组日常普通使用的工具函数的集合。
 
 ## 如何使用？
 
-安装 `@delon/util` 依赖包：
+安装 `yoyo-ng-module/util` 依赖包：
 
 ```bash
-npm install @delon/util --save
+npm install yoyo-ng-module/util --save
 ```
 
 导入 `DelonUtilModule` 模块：

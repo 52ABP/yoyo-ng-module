@@ -14,8 +14,8 @@
         "yoyo-ng-module":["./"],
         "yoyo-ng-module/*":["./*"],
         "@abp/*": ["./abp/*"],
-        "@delon/theme": ["./theme"],
-        "@delon/util": ["./util"]
+        "yoyo-ng-module/theme": ["./theme"],
+        "yoyo-ng-module/util": ["./util"]
       },
       "rootDir": ".",
       "outDir": "dist",

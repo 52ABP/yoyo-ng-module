@@ -1,4 +1,4 @@
-# @delon/mock module [![Build Status](https://travis-ci.org/cipchk/delon.svg?branch=master)](https://travis-ci.org/cipchk/delon) [![NPM version](https://img.shields.io/npm/v/@delon/mock.svg)](https://www.npmjs.com/package/@delon/mock) [![NPM version](https://img.shields.io/npm/v/@delon/mock/next.svg)](https://www.npmjs.com/package/@delon/mock) [![Taobao version](https://npm.taobao.org/badge/v/@delon/mock.svg?style=flat-square)](https://npm.taobao.org/package/@delon/mock)
+# yoyo-ng-module/mock module [![Build Status](https://travis-ci.org/cipchk/delon.svg?branch=master)](https://travis-ci.org/cipchk/delon) [![NPM version](https://img.shields.io/npm/v/yoyo-ng-module/mock.svg)](https://www.npmjs.com/package/yoyo-ng-module/mock) [![NPM version](https://img.shields.io/npm/v/yoyo-ng-module/mock/next.svg)](https://www.npmjs.com/package/yoyo-ng-module/mock) [![Taobao version](https://npm.taobao.org/badge/v/yoyo-ng-module/mock.svg?style=flat-square)](https://npm.taobao.org/package/yoyo-ng-module/mock)
 
 Generate random data, intercept http requests.
 

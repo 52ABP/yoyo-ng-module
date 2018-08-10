@@ -27,11 +27,11 @@ import {
   ReuseTabNotify,
   ReuseTabMatchMode,
   ReuseItem,
+  ReuseContextI18n,
   ReuseContextCloseEvent,
-  ReuseTitle
+  ReuseTitle,
 } from './interface';
 import { ReuseTabContextService } from './reuse-tab-context.service';
-import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
   selector: 'reuse-tab',
@@ -54,6 +54,8 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   // region: properties
   /** 设置匹配模式 */
   @Input() mode: ReuseTabMatchMode = ReuseTabMatchMode.Menu;
+  /** 选项文本国际化 */
+  @Input() i18n: ReuseContextI18n;
   /** 是否Debug模式 */
   @Input()
   get debug() {
@@ -114,8 +116,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute,
     private el: ElementRef,
     private render: Renderer2,
-    @Inject(DOCUMENT) private doc: any,
-    private localizationService: LocalizationService,
+    @Inject(DOCUMENT) private doc: any
   ) {
     const route$ = this.router.events.pipe(
       filter(evt => evt instanceof NavigationEnd),
@@ -123,7 +124,10 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) =>
       this.genList(res as any),
     );
+  }
 
+  private genTit(title: ReuseTitle): string {
+    return title.text;
   }
 
   private genList(notify?: ReuseTabNotify) {
@@ -134,7 +138,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     const ls = this.srv.items.map((item: ReuseTabCached, index: number) => {
       return <ReuseItem>{
         url: item.url,
-        title: item.title.text,
+        title: this.genTit(item.title),
         closable: this.allowClose && item.closable && this.srv.count > 0,
         index,
         active: false,
@@ -157,7 +161,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         const snapshotTrue = this.srv.getTruthRoute(snapshot);
         ls.push(<ReuseItem>{
           url,
-          title: this.srv.getTitle(url, snapshotTrue).text,
+          title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
           closable:
             this.allowClose &&
             this.srv.count > 0 &&

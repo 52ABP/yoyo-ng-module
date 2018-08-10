@@ -38,16 +38,16 @@
               </ng-container>
               <ng-container *ngIf="!c.filterMultiple">
                 <li nz-menu-item *ngFor="let filter of c.filters">
-                  <label nz-radio [ngModel]="filter.checked" (ngModelChange)="_filterRadio(c, filter, $event)">{{filter.text}}</label>
+                  <label nz-radio [ngModel]="filter.checked" (ngModelChange)="filterRadio(c, filter, $event)">{{filter.text}}</label>
                 </li>
               </ng-container>
             </ul>
             <div class="ant-table-filter-dropdown-btns">
               <a class="ant-table-filter-dropdown-link confirm" (click)="c.filterVisible = false">
-                <span (click)="_filterConfirm(c)">{{c.filterConfirmText}}</span>
+                <span (click)="filterConfirm(c)">{{c.filterConfirmText}}</span>
               </a>
               <a class="ant-table-filter-dropdown-link clear" (click)="c.filterVisible = false">
-                <span (click)="_filterClear(c)">{{c.filterClearText}}</span>
+                <span (click)="filterClear(c)">{{c.filterClearText}}</span>
               </a>
             </div>
           </nz-dropdown>
@@ -57,7 +57,7 @@
   </thead>
   <tbody class="ad-st-body">
     <ng-container *ngFor="let i of _data; let index=index">
-      <tr [attr.data-index]="index" (click)="_rowClick($event, i, index)">
+      <tr [attr.data-index]="index">
         <td *ngIf="expand" [nzShowExpand]="expand" [(nzExpand)]="i.expand"></td>
         <td *ngFor="let c of _columns; let cIdx=index" [nzLeft]="c._left" [nzRight]="c._right" [nzCheckbox]="c.type === 'checkbox'" [ngClass]="c.className"
           [attr.colspan]="c.colSpan">
@@ -84,29 +84,29 @@
             <ng-container *ngFor="let btn of c.buttons; let last=last">
               <ng-container *ngIf="btn.iif(i, btn, c)" [ngSwitch]="btn._type">
                 <ng-container *ngSwitchCase="2">
-                  <nz-popconfirm [nzTitle]="btn.popTitle" (nzOnConfirm)="_btnClick($event, i, btn)">
-                    <a nz-popconfirm [innerHTML]="_btnText(i, btn)"></a>
+                  <nz-popconfirm [nzTitle]="btn.popTitle" (nzOnConfirm)="btnClick(i, btn)">
+                    <a nz-popconfirm [innerHTML]="btnText(i, btn)"></a>
                   </nz-popconfirm>
                 </ng-container>
                 <ng-container *ngSwitchCase="3">
                   <nz-dropdown>
                     <a class="ant-dropdown-link" nz-dropdown>
-                      <span [innerHTML]="_btnText(i, btn)"></span>
+                      <span [innerHTML]="btnText(i, btn)"></span>
                       <i class="anticon anticon-down"></i>
                     </a>
                     <ul nz-menu>
                       <ng-container *ngFor="let subBtn of btn.children">
                         <li nz-menu-item *ngIf="subBtn.iif(i, subBtn, c)">
-                          <nz-popconfirm *ngIf="subBtn._type === 2" [nzTitle]="subBtn.popTitle" (nzOnConfirm)="_btnClick($event, i, subBtn)">
-                            <span nz-popconfirm [innerHTML]="_btnText(i, subBtn)"></span>
+                          <nz-popconfirm *ngIf="subBtn._type === 2" [nzTitle]="subBtn.popTitle" (nzOnConfirm)="btnClick(i, subBtn)">
+                            <a nz-popconfirm [innerHTML]="btnText(i, subBtn)"></a>
                           </nz-popconfirm>
-                          <span *ngIf="subBtn._type !== 2" (click)="_btnClick($event, i, subBtn)" [innerHTML]="_btnText(i, subBtn)"></span>
+                          <a *ngIf="subBtn._type !== 2" (click)="btnClick(i, subBtn)" [innerHTML]="btnText(i, subBtn)"></a>
                         </li>
                       </ng-container>
                     </ul>
                   </nz-dropdown>
                 </ng-container>
-                <a *ngSwitchDefault (click)="_btnClick($event, i, btn)" [innerHTML]="_btnText(i, btn)"></a>
+                <a *ngSwitchDefault (click)="btnClick(i, btn)" [innerHTML]="btnText(i, btn)"></a>
                 <nz-divider *ngIf="!last" nzType="vertical"></nz-divider>
               </ng-container>
             </ng-container>

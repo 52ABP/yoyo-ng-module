@@ -26,7 +26,7 @@ export function I18nHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, `assets/tmp/i18n/`, '.json');
 }<% } %>
 <% if (form) { %>
-// @delon/form: JSON Schema form
+// yoyo-ng-module/form: JSON Schema form
 import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';<% } %>
 
 export function StartupServiceFactory(startupService: StartupService): Function {

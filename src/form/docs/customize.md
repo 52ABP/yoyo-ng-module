@@ -6,7 +6,7 @@ type: Documents
 
 ## 写在前面
 
-`@delon/form` 尽可能满足不同需求，除现有内置的十几种基础组件小部件外，可以通过以下两种方式进一步扩展需求：
+`yoyo-ng-module/form` 尽可能满足不同需求，除现有内置的十几种基础组件小部件外，可以通过以下两种方式进一步扩展需求：
 
 ## 一、利用 `custom` 小部件进行扩展
 
@@ -20,7 +20,7 @@ type: Documents
 
 **常见小部件库**
 
-默认情况下 @delon/form 实现了一些常见需求，但需要额外类库支持的，称它为第三方组件小部件，这一部分小部件存在于[widgets-third](https://github.com/cipchk/delon/tree/master/packages/form/widgets-third)目录里；你可以直接复制使用。
+默认情况下 yoyo-ng-module/form 实现了一些常见需求，但需要额外类库支持的，称它为第三方组件小部件，这一部分小部件存在于[widgets-third](https://github.com/cipchk/delon/tree/master/packages/form/widgets-third)目录里；你可以直接复制使用。
 
 这些组件包括：
 

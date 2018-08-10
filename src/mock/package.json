@@ -1,5 +1,5 @@
 {
-  "name": "@delon/mock",
+  "name": "yoyo-ng-module/mock",
   "version": "0.0.0-PLACEHOLDER",
   "main": "./bundles/mock.umd.js",
   "module": "./esm5/mock.js",

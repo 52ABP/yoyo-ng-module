@@ -6,7 +6,7 @@ type: Documents
 
 ## 写在前面
 
-[JSON Schema](http://json-schema.org/) 是一种标准的定义 JSON 数据结构的规范，并不包含对这些规范转换成表单具体说明，`@delon/form` 也是根据自己的理解并结合 `ng-zorro-antd` 现有数据录入组件库产生的动态构建表单类库。
+[JSON Schema](http://json-schema.org/) 是一种标准的定义 JSON 数据结构的规范，并不包含对这些规范转换成表单具体说明，`yoyo-ng-module/form` 也是根据自己的理解并结合 `ng-zorro-antd` 现有数据录入组件库产生的动态构建表单类库。
 
 JSON Schema **始终**都必须有一个类型为 `type="object"` 作为**根节点**，因此一个最简单的 Schema 结构至少是：
 
@@ -19,7 +19,7 @@ schema = {
 
 在描述 Schema 说明之前，有必要对表单元素与 Schema 之前的联系做一个系统性说明。
 
-我们知道，表单是由一组HTML元素组件，每一个元素对应一个 Schema 属性，属性有自己的数据类型、格式信息、视觉信息等，但这些信息不足以表述 `ng-zorro-antd` 所提供的丰富API接口。为了更好利用这些API接口，`@delon/form` 除了实现绝大部分 JSON Schema 标准以外，额外唯一增加了一个 `ui` 属性用于表述属性如何渲染的问题。
+我们知道，表单是由一组HTML元素组件，每一个元素对应一个 Schema 属性，属性有自己的数据类型、格式信息、视觉信息等，但这些信息不足以表述 `ng-zorro-antd` 所提供的丰富API接口。为了更好利用这些API接口，`yoyo-ng-module/form` 除了实现绝大部分 JSON Schema 标准以外，额外唯一增加了一个 `ui` 属性用于表述属性如何渲染的问题。
 
 ### 无污染
 
@@ -73,7 +73,7 @@ ui 本身也是一个 JSON 结构，为了区分 JSON Schema 属性名的对应�
 
 ## JSON Schema（SFSchema）
 
-JSON Schema 有完整的对每个属性的规范描述，`@delon/form` 当前是基于 [draft-07](http://json-schema.org/) 规范，下列是规范具体说明：
+JSON Schema 有完整的对每个属性的规范描述，`yoyo-ng-module/form` 当前是基于 [draft-07](http://json-schema.org/) 规范，下列是规范具体说明：
 
 ### 常规类
 
@@ -127,7 +127,7 @@ JSON Schema 有完整的对每个属性的规范描述，`@delon/form` 当前是
 | `[then]` | 条件验证 | `SFSchema` | -      |
 | `[else]` | 条件验证 | `SFSchema` | -      |
 
-条件类的校验非常强大和丰富，但是出于会破坏UI导致整个组件构建更复杂，`@delon/form` 仅实现 `required` 的处理，并且把它当成是否显示校验目标，比如：一个登录页，会根据不同登录方式来显示不同登录模式：
+条件类的校验非常强大和丰富，但是出于会破坏UI导致整个组件构建更复杂，`yoyo-ng-module/form` 仅实现 `required` 的处理，并且把它当成是否显示校验目标，比如：一个登录页，会根据不同登录方式来显示不同登录模式：
 
 ```ts
 schema: SFSchema = {
