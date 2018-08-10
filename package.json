@@ -1,6 +1,6 @@
 {
   "name": "yoyo-ng-module",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
   "main": "./dist/bundles/yoyo-ng-module.umd.js",
   "module": "./dist/index.js",
@@ -20,6 +20,7 @@
     "52abp",
     "angular"
   ],
+  "private": false,
   "author": "ltm0203<werltm@hotmail.com>",
   "license": "MIT",
   "author.email": "werltm@hotmail.com",
@@ -66,10 +67,7 @@
     "ngx-tinymce": "^2.0.0",
     "ngx-ueditor": "^2.1.0",
     "qrious": "^4.0.2",
-    "rimraf": "^2.5.4",
-    "rollup": "^0.37.0",
     "rxjs": "^6.1.0",
-    "typescript": "2.7.2",
     "uglify-js": "^2.7.5",
     "zone.js": "^0.8.17"
   },
@@ -117,6 +115,7 @@
     "prettier": "^1.12.1",
     "prettier-stylelint": "^0.4.2",
     "protractor": "~5.3.0",
+    "rimraf": "^2.5.4",
     "rollup": "^0.58.2",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
