@@ -1,6 +1,6 @@
 {
   "name": "yoyo-ng-module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
   "main": "./dist/bundles/yoyo-ng-module.umd.js",
   "module": "./dist/index.js",
