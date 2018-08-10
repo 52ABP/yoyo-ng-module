@@ -5,15 +5,11 @@
         "baseUrl": ".",
         "rootDir": ".",
         "paths": {
-            "@angular/core": ["node_modules/@angular/core"],
-            "rxjs/*": ["node_modules/rxjs/*"],
-            "yoyo-ng-module":["./"],
-            "yoyo-ng-module/*":["./*"],
-            "@abp/*": ["abp/*"],
-            "yoyo-ng-module/theme": ["theme"],
-            "yoyo-ng-module/util": ["util"]
+            "yoyo-ng-module": ["./"],
+            "yoyo-ng-module/*": ["./*"],
+            "@abp/*": ["./abp/*"]
         },
-        "outDir": "dist"
+        "outDir": "../dist"
     },
 
     "files": [
@@ -31,5 +27,6 @@
         "strictMetadataEmit": false,
         "skipTemplateCodegen": true,
         "flatModuleOutFile": "index.js",
+        "flatModuleId": "@delon/abc"
     }
 }

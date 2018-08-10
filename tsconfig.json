@@ -1,44 +1,39 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "declaration": false,
-      "stripInternal": true,
-      "experimentalDecorators": true,
-      "strictNullChecks": false,
-      "noImplicitAny": false,
-      "module": "es2015",
-      "moduleResolution": "node",
-      "paths": {
-        "@angular/core": ["node_modules/@angular/core"],
-        "rxjs/*": ["node_modules/rxjs/*"],
-        "yoyo-ng-module":["./src/"],
-        "yoyo-ng-module/*":["./src/*"],
-        "@abp/*": ["./src/abp/*"],
-        "yoyo-ng-module/theme": ["./src/theme"],
-        "yoyo-ng-module/util": ["./src/util"]
-      },
-      "rootDir": ".",
-      "outDir": "dist",
-      "sourceMap": true,
-      "inlineSources": true,
-      "target": "es5",
-      "skipLibCheck": true,
-      "lib": [
-        "es2017", 
-        "dom"
-      ]
-    },
-    "files": [
-      "index.ts",
-      "src/index.ts",
-      "src/abp/index.ts",
-      "src/abc/index.ts",
-      "src/theme/index.ts",
-      "src/util/index.ts",
-      "src/typings.d.ts",
-      "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
-    ],
-    "angularCompilerOptions": {
-      "strictMetadataEmit": true
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "stripInternal": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "module": "es2015",
+    "target": "es2015",
+    "lib": ["es2017", "dom"],
+    "types": [],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "importHelpers": true,
+    "outDir": "dist",
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs/*": ["node_modules/rxjs/*"],
+      "@abp/*": ["./src/abp/*"],
+      "yoyo-ng-module": ["./src/"],
+      "yoyo-ng-module/*": ["./src/*"]
     }
+  },
+  "files": [
+    "index.ts",
+    "src/index.ts",
+    "src/abp/index.ts",
+    "src/abc/index.ts",
+    "src/theme/index.ts",
+    "src/util/index.ts",
+    "src/typings.d.ts",
+    "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
   }
+}
