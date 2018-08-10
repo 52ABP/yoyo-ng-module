@@ -13,7 +13,7 @@ import {
 } from './interface';
 import { DelonCacheConfig } from '../cache.config';
 
-const addSeconds=addSeconds_;
+const addSeconds = addSeconds_;
 
 @Injectable()
 export class CacheService implements OnDestroy {
@@ -21,7 +21,7 @@ export class CacheService implements OnDestroy {
   private readonly notifyBuffer: Map<
     string,
     BehaviorSubject<CacheNotifyResult>
-  > = new Map<string, BehaviorSubject<CacheNotifyResult>>();
+    > = new Map<string, BehaviorSubject<CacheNotifyResult>>();
   private meta: Set<string> = new Set<string>();
   private freq_tick = 3000;
   private freq_time: any;
@@ -213,7 +213,7 @@ export class CacheService implements OnDestroy {
               this._deepGet(ret, this.options.reName as string[], null),
             ),
             tap(v => this.set(key, v)),
-          );
+        );
       }
       return null;
     }

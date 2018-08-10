@@ -3,34 +3,33 @@
 
     "compilerOptions": {
         "baseUrl": ".",
+        "rootDir": ".",
         "paths": {
+            "@angular/core": ["node_modules/@angular/core"],
+            "rxjs/*": ["node_modules/rxjs/*"],
             "yoyo-ng-module":["./"],
             "yoyo-ng-module/*":["./*"],
-            "@abp/*": ["./abp/*"],
-            "yoyo-ng-module/theme": ["./theme"],
-            "yoyo-ng-module/util": ["./util"]
+            "@abp/*": ["abp/*"],
+            "yoyo-ng-module/theme": ["theme"],
+            "yoyo-ng-module/util": ["util"]
         },
-        "rootDir": ".",
-        "outDir": "dist",
-        "sourceMap": true,
-        "inlineSources": true,
-        "target": "es5",
-        "skipLibCheck": true,
-        "lib": [
-            "es2015",
-            "dom"
-        ]
+        "outDir": "dist"
     },
 
     "files": [
+        "index.ts",
         "abp/index.ts",
         "abc/index.ts",
         "theme/index.ts",
         "util/index.ts",
-        "typings.d.ts"
+        "typings.d.ts",
+        "../node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
     ],
 
     "angularCompilerOptions": {
-        "strictMetadataEmit": true
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": false,
+        "skipTemplateCodegen": true,
+        "flatModuleOutFile": "index.js",
     }
 }
