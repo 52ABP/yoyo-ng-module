@@ -16,7 +16,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toBoolean, toNumber } from '@delon/util';
+import { toBoolean, toNumber } from 'yoyo-ng-module/util';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { FullContentService } from './full-content.service';

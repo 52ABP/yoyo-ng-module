@@ -7,7 +7,7 @@ title: 可展开
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter } from '@delon/abc';
+import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter } from 'yoyo-ng-module/abc';
 
 @Component({
     selector: 'app-demo',

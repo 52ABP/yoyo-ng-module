@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, Optional, Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { MenuService } from '@delon/theme';
+import { MenuService } from 'yoyo-ng-module/theme';
 import {
   ReuseTabCached,
   ReuseTabMatchMode,

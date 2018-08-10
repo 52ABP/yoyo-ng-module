@@ -16,7 +16,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT, LocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService, SettingsService, MenuItem } from '@delon/theme';
+import { MenuService, SettingsService, MenuItem } from 'yoyo-ng-module/theme';
 
 import { Nav } from './interface';
 

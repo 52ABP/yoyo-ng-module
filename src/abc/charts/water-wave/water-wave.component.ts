@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { toNumber } from '@delon/util';
+import { toNumber } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'g2-water-wave',

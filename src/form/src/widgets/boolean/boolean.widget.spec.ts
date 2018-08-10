@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { deepCopy } from '@delon/util';
+import { deepCopy } from 'yoyo-ng-module/util';
 
 import {
   builder,

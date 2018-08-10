@@ -10,7 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toBoolean } from '@delon/util';
+import { toBoolean } from 'yoyo-ng-module/util';
 
 const CLS = 'ad-footer-toolbar';
 

@@ -1,4 +1,4 @@
-import { PermissionCheckerService } from '@abp/auth/permission-checker.service';
+import { PermissionCheckerService } from 'yoyo-ng-module/abp/auth/permission-checker.service';
 import { Injectable, Inject, Optional, OnDestroy } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';

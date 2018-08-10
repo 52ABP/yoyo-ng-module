@@ -17,7 +17,7 @@ Simplest of usage.
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SFSchema } from '@delon/form';
+import { SFSchema } from 'yoyo-ng-module/form';
 
 @Component({
   selector: 'app-demo',

@@ -7,7 +7,7 @@ import {
   AfterViewInit,
   Renderer2,
 } from '@angular/core';
-import { isEmpty, toBoolean } from '@delon/util';
+import { isEmpty, toBoolean } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'desc-list-item',

@@ -1,5 +1,5 @@
 import { SimpleTableComponent } from './simple-table.component';
-import { ModalHelperOptions } from '@delon/theme';
+import { ModalHelperOptions } from 'yoyo-ng-module/theme';
 
 export type CompareFn = ((a: any, b: any) => number);
 

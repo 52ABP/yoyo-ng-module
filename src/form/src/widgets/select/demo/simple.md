@@ -15,7 +15,7 @@ Simplest of usage.
 
 ```ts
 import { Component } from '@angular/core';
-import { SFSchema } from '@delon/form';
+import { SFSchema } from 'yoyo-ng-module/form';
 import { NzMessageService } from 'ng-zorro-antd';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';

@@ -35,7 +35,7 @@ type: Documents
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { ControlWidget } from '@delon/form';
+import { ControlWidget } from 'yoyo-ng-module/form';
 
 @Component({
   selector: 'sf-tinymce',

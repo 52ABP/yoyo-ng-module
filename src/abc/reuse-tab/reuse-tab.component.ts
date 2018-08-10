@@ -19,7 +19,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription, combineLatest } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
-import { toNumber, toBoolean } from '@delon/util';
+import { toNumber, toBoolean } from 'yoyo-ng-module/util';
 
 import { ReuseTabService } from './reuse-tab.service';
 import {
@@ -31,7 +31,7 @@ import {
   ReuseTitle
 } from './interface';
 import { ReuseTabContextService } from './reuse-tab-context.service';
-import { LocalizationService } from '@abp/localization/localization.service';
+import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
   selector: 'reuse-tab',

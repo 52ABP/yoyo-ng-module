@@ -9,7 +9,7 @@ import {
   NgZone,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { toNumber } from '@delon/util';
+import { toNumber } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'g2-gauge',

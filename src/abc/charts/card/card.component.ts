@@ -3,7 +3,7 @@ import {
   TemplateRef,
   Input,
 } from '@angular/core';
-import { toBoolean } from '@delon/util';
+import { toBoolean } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'g2-card',

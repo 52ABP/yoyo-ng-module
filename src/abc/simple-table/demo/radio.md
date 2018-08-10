@@ -7,7 +7,7 @@ title: 单选框
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableData } from '@delon/abc';
+import { SimpleTableColumn, SimpleTableData } from 'yoyo-ng-module/abc';
 
 @Component({
   selector: 'app-demo',

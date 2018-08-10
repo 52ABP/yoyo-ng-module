@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { DelonUtilModule } from '@delon/util';
+import { DelonUtilModule } from 'yoyo-ng-module/util';
 
 import { DelonFormConfig } from './config';
 import {

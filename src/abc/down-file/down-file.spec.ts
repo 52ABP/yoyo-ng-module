@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as fs from 'file-saver';
-import { _HttpClient } from '@delon/theme';
+import { _HttpClient } from 'yoyo-ng-module/theme';
 
 import { AdDownFileModule } from './down-file.module';
 

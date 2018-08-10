@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild<% if(!!viewEncapsulation) { %>, ViewEncaps
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';<% } %>
 import { <% if(modal) { %>NzModalRef, <% } %>NzMessageService } from 'ng-zorro-antd';
-import { _HttpClient } from '@delon/theme';
-import { SFSchema, SFUISchema } from '@delon/form';
+import { _HttpClient } from 'yoyo-ng-module/theme';
+import { SFSchema, SFUISchema } from 'yoyo-ng-module/form';
 
 @Component({
   selector: '<%= selector %>',<% if(inlineTemplate) { %>

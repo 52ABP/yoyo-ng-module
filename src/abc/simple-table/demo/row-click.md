@@ -9,7 +9,7 @@ title: 行事件
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableRowClick } from '@delon/abc';
+import { SimpleTableColumn, SimpleTableRowClick } from 'yoyo-ng-module/abc';
 
 @Component({
   selector: 'app-demo',

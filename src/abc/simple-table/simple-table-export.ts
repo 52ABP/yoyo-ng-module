@@ -1,5 +1,5 @@
 import { Injectable, Optional } from '@angular/core';
-import { deepGet } from '@delon/util';
+import { deepGet } from 'yoyo-ng-module/util';
 import { XlsxService } from '../xlsx/xlsx.service';
 import { SimpleTableColumn, STExportOptions } from './interface';
 

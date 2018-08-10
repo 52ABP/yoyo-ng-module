@@ -7,7 +7,7 @@ title: 导出Excel
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn } from '@delon/abc';
+import { SimpleTableColumn } from 'yoyo-ng-module/abc';
 
 @Component({
   selector: 'app-demo',

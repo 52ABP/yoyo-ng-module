@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { toNumber, toBoolean } from '@delon/util';
+import { toNumber, toBoolean } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'g2-pie',

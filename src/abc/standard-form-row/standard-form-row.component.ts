@@ -7,7 +7,7 @@ import {
   Renderer2,
   SimpleChange,
 } from '@angular/core';
-import { toBoolean, updateHostClass } from '@delon/util';
+import { toBoolean, updateHostClass } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'standard-form-row',

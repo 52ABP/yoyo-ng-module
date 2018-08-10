@@ -1,4 +1,4 @@
-import { MockRequest, MockStatusError } from '@delon/mock';
+import { MockRequest, MockStatusError } from 'yoyo-ng-module/mock';
 // TIPS: mockjs 一些优化细节见：http://ng-alain.com/docs/mock
 // import * as Mock from 'mockjs';
 

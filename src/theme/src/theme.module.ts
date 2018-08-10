@@ -1,4 +1,4 @@
-import { PermissionCheckerService } from '@abp/auth/permission-checker.service';
+import { PermissionCheckerService } from 'yoyo-ng-module/abp/auth/permission-checker.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -7,7 +7,7 @@ import { WINDOW } from './win_tokens';
 
 
 import { ModalHelper } from './services/modal/modal.helper';
-const HELPERS = [ModalHelper];
+const HELPERS = [ModalHelper, PermissionCheckerService];
 
 // components
 const COMPONENTS = [];
@@ -33,7 +33,6 @@ export class AlainThemeModule {
       ngModule: AlainThemeModule,
       providers: [
         { provide: WINDOW, useValue: window },
-        { provide: PermissionCheckerService },
         ...HELPERS,
       ],
     };

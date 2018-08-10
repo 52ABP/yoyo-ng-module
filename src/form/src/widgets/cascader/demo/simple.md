@@ -17,7 +17,7 @@ Simplest of usage.
 import { Component } from '@angular/core';
 import { of } from 'rxjs';
 import { NzMessageService, CascaderOption } from 'ng-zorro-antd';
-import { SFSchema, CascaderWidget } from '@delon/form';
+import { SFSchema, CascaderWidget } from 'yoyo-ng-module/form';
 
 @Component({
   selector: 'app-demo',

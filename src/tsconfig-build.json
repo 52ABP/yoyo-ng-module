@@ -4,6 +4,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+            "yoyo-ng-module":["./"],
+            "yoyo-ng-module/*":["./*"],
             "@abp/*": ["./abp/*"],
             "@delon/theme": ["./theme"],
             "@delon/util": ["./util"]
@@ -22,9 +24,9 @@
 
     "files": [
         "abp/index.ts",
-        "abc/public_api.ts",
-        "theme/public_api.ts",
-        "util/public_api.ts",
+        "abc/index.ts",
+        "theme/index.ts",
+        "util/index.ts",
         "typings.d.ts"
     ],
 

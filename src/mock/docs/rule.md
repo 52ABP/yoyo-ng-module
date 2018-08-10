@@ -41,7 +41,7 @@ export const USERS = {
 响应内容只支持三种类型：`Object`、`Array`、`(req: MockRequest) => any`。
 
 ```ts
-import { MockStatusError } from '@delon/mock';
+import { MockStatusError } from 'yoyo-ng-module/mock';
 
 export const USERS = {
   // Array
@@ -72,7 +72,7 @@ export const USERS = {
 ## 一些示例
 
 ```ts
-import { MockStatusError } from '@delon/mock';
+import { MockStatusError } from 'yoyo-ng-module/mock';
 
 export const USERS = {
   // 支持值为 Object 和 Array

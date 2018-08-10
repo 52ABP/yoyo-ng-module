@@ -11,7 +11,7 @@ import {
   QueryList,
   SimpleChange,
 } from '@angular/core';
-import { toNumber } from '@delon/util';
+import { toNumber } from 'yoyo-ng-module/util';
 import { DescListItemComponent } from './desc-list-item.component';
 import { AdDescListConfig } from './desc-list.config';
 

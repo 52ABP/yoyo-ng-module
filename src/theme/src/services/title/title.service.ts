@@ -1,4 +1,3 @@
-import { LocalizationService } from '@abp/localization/localization.service';
 import {
   Injectable,
   Inject,
@@ -30,7 +29,6 @@ export class TitleService implements OnDestroy {
     private injector: Injector,
     private title: Title,
     private menuSrv: MenuService,
-    private localization: LocalizationService,
     @Inject(DOCUMENT) private doc: any,
   ) {
 

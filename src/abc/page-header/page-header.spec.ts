@@ -16,8 +16,8 @@ import {
   AlainI18NService,
   ALAIN_I18N_TOKEN,
   TitleService,
-} from '@delon/theme';
-import { DelonACLModule } from '@delon/acl';
+} from 'yoyo-ng-module/theme';
+import { DelonACLModule } from 'yoyo-ng-module/acl';
 
 import { AdPageHeaderModule } from './page-header.module';
 import { PageHeaderComponent } from './page-header.component';

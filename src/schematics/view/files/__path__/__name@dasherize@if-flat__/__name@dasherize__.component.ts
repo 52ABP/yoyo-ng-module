@@ -1,7 +1,7 @@
 import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';<% if(!modal) { %>
 import { ActivatedRoute } from '@angular/router';<% } %>
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
-import { _HttpClient } from '@delon/theme';
+import { _HttpClient } from 'yoyo-ng-module/theme';
 
 @Component({
   selector: '<%= selector %>',<% if(inlineTemplate) { %>

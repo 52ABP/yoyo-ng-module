@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DelonUtilModule } from '@delon/util';
+import { DelonUtilModule } from 'yoyo-ng-module/util';
 
 import { ImageDirective } from './image.directive';
 import { AdImageConfig } from './image.config';

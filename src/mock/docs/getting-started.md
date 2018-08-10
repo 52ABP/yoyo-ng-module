@@ -26,7 +26,7 @@ npm install @delon/mock --save-dev
 在根模块 `AppModule` 导入 [Mock 规则数据](/mock/rule)和 `DelonMockModule`；
 
 ```ts
-import { DelonMockModule } from '@delon/mock';
+import { DelonMockModule } from 'yoyo-ng-module/mock';
 import * as MOCKDATA from '../../_mock';
 // 只对开发环境有效
 import { environment } from '../environments/environment';
@@ -57,7 +57,7 @@ Mock 并非是真实数据，大部分场景是针对开发本地或测试环境
 当然，你依然可以在生产环境也使用这种规则，就像 https://cipchk.github.io/ng-alain/ 一样，需要一些模拟请求来保证环境的运行。
 
 ```ts
-import { DelonMockModule } from '@delon/mock';
+import { DelonMockModule } from 'yoyo-ng-module/mock';
 import * as MOCKDATA from '../../_mock';
 @NgModule({
   imports: [

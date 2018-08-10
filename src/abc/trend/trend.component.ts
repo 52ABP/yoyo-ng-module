@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { toBoolean } from '@delon/util';
+import { toBoolean } from 'yoyo-ng-module/util';
 
 @Component({
   selector: 'trend',

@@ -14,17 +14,17 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { toBoolean, isEmpty } from '@delon/util';
+import { toBoolean, isEmpty } from 'yoyo-ng-module/util';
 import {
   MenuService,
   MenuItem,
   TitleService,
-} from '@delon/theme';
+} from 'yoyo-ng-module';
 import { ReuseTabService } from '../reuse-tab/reuse-tab.service';
 
 import { AdPageHeaderConfig } from './page-header.config';
 import { Subscription } from 'rxjs';
-import { LocalizationService } from '@abp/localization/localization.service';
+import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
   selector: 'page-header',

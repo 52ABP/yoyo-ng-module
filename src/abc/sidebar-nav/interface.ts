@@ -1,4 +1,4 @@
-import { MenuItem } from '@delon/theme';
+import { MenuItem } from 'yoyo-ng-module/theme';
 
 export interface Nav extends MenuItem {
   /**

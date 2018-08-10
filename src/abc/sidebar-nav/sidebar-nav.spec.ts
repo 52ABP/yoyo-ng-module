@@ -9,8 +9,8 @@ import { By } from '@angular/platform-browser';
 import { RouterModule, Router } from '@angular/router';
 import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
 
-import { AlainThemeModule, MenuService, SettingsService } from '@delon/theme';
-import { deepCopy } from '@delon/util';
+import { AlainThemeModule, MenuService, SettingsService } from 'yoyo-ng-module/theme';
+import { deepCopy } from 'yoyo-ng-module/util';
 
 import { AdSidebarNavModule } from './sidebar-nav.module';
 import { SidebarNavComponent } from './sidebar-nav.component';

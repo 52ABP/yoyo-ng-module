@@ -9,7 +9,7 @@ title: 带浮层卡片
 import { Component } from '@angular/core';
 import * as distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import { NzMessageService } from 'ng-zorro-antd';
-import { NoticeItem, NoticeIconList } from '@delon/abc';
+import { NoticeItem, NoticeIconList } from 'yoyo-ng-module/abc';
 
 @Component({
     selector: 'app-demo',

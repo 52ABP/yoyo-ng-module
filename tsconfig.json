@@ -10,6 +10,8 @@
     "moduleResolution": "node",
     "paths": {
       "@angular/core": ["node_modules/@angular/core"],
+      "yoyo-ng-module":["src/"],
+      "yoyo-ng-module/*":["src/*"],
       "@abp/*": ["src/abp/*"],
       "@delon/theme": ["src/theme"],
       "@delon/util": ["src/util"]
