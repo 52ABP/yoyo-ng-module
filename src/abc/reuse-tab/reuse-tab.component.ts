@@ -35,7 +35,18 @@ import { ReuseTabContextService } from './reuse-tab-context.service';
 
 @Component({
   selector: 'reuse-tab',
-  templateUrl: './reuse-tab.component.html',
+  template: `
+  <nz-tabset [nzSelectedIndex]="pos" [nzAnimated]="false" nzType="line">
+  <nz-tab *ngFor="let i of list; let index = index" [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <span [context-menu]="i" (click)="to($event, index)" class="name">{{i.title}}</span>
+      <i *ngIf="i.closable" class="anticon anticon-close op" (click)="_close($event, index, false)"></i>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+<reuse-tab-context [i18n]="i18n" (change)="cmChange($event)"></reuse-tab-context>
+  `,
+  // templateUrl: './reuse-tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
   providers: [ReuseTabContextService],

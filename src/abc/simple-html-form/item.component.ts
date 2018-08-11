@@ -21,7 +21,18 @@ import { SHFWrapDirective } from './wrap.directive';
 
 @Component({
   selector: 'shf-item',
-  templateUrl: './item.component.html',
+  template: `
+  <div class="ant-form-item-label ad-shf__label"
+  [class.ad-shf__nolabel]="!_label && !_labelTpl" [style.width.px]="labelWidth">
+  <ng-container *ngIf="_label; else _labelTpl">{{_label}}</ng-container>
+</div>
+<div class="ant-form-item-control-wrapper ad-shf__control">
+  <div class="ant-form-item-control {{controlClass}}" [class.has-error]="invalid" [attr.title]="tip">
+    <ng-content></ng-content>
+  </div>
+</div>
+  `,
+  // templateUrl: './item.component.html',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -79,7 +90,7 @@ export class SHFItemComponent implements OnChanges, AfterViewInit, OnDestroy {
     private el: ElementRef,
     private ren: Renderer2,
     private cd: ChangeDetectorRef,
-  ) {}
+  ) { }
 
   private fixLabelWidth(): this {
     const w = this.wrap;
