@@ -11,8 +11,8 @@
     "minify": "uglifyjs dist/bundles/yoyo-ng-module.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/yoyo-ng-module.umd.min.js",
     "copyLess":"CopyLess.exe",
     "publish":"cd dist && yarn publish",
-    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify && npm run copyLess && npm run publish",
-    "publish-to-npm": "cd dist && npm publish"
+    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify && npm run copyLess",
+    "build-publish":"npm run build && npm run publish"
   },
   "repository": "git+https://github.com/52ABP/yoyo-ng-module.git",
   "keywords": [
