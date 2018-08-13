@@ -21,7 +21,7 @@ import { AdPageHeaderConfig } from './page-header.config';
 import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
-  selector: 'page-header-custom',
+  selector: 'page-header',
   template: `
   <ng-container *ngIf="!breadcrumb; else breadcrumb">
     <nz-breadcrumb *ngIf="paths && paths.length > 0">

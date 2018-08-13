@@ -82,12 +82,18 @@ export class SidebarNavComponent implements OnInit {
   collapsed: boolean = false;
 
   constructor(
-    private menuService: MenuService,
+    public menuService: MenuService,
     public settings: SettingsService
   ) {
   }
 
   ngOnInit() {
+
+    // event.on
+    abp.event.on('abp.theme-setting.collapsed', collapsed => {
+      this.collapsed = collapsed;
+    });
+
     const self = this;
 
     setTimeout(() => {
