@@ -78,17 +78,11 @@ const FLOATINGCLS = 'nav-floating';
   changeDetection: ChangeDetectionStrategy.Default,
   preserveWhitespaces: false,
 })
-export class SidebarNavComponent implements OnInit {
-  collapsed: boolean = false;
-
+export class SidebarNavComponent {
   constructor(
     public menuService: MenuService,
     public settings: SettingsService
   ) {
-  }
-
-  ngOnInit() {
-
   }
 
   hasChildren(item: MenuItem): boolean {
