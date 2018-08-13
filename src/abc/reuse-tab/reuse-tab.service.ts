@@ -228,7 +228,7 @@ export class ReuseTabService implements OnDestroy {
     // const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
     // return menu ? { text: menu.name } : { text: url };
     const menu = this.getMenu(url);
-    return { text: menu.name };
+    return menu ? { text: menu.name } : { text: url };
   }
 
   /**

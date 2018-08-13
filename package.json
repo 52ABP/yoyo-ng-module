@@ -9,7 +9,9 @@
     "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map  dist/LICENSE dist/README.md",
     "bundling": "rollup -c",
     "minify": "uglifyjs dist/bundles/yoyo-ng-module.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/yoyo-ng-module.umd.min.js",
-    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify",
+    "copyLess":"CopyLess.exe",
+    "publish":"cd dist && yarn publish",
+    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify && npm run copyLess && npm run publish",
     "publish-to-npm": "cd dist && npm publish"
   },
   "repository": "git+https://github.com/52ABP/yoyo-ng-module.git",
@@ -29,8 +31,8 @@
   },
   "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.3",
+    "@angular/core": "^6.0.3",
     "abp-web-resources": "^3.7.0"
   },
   "dependencies": {
@@ -40,9 +42,9 @@
     "@angular/core": "^6.0.3",
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
-    "@angular/platform-browser": "6.0.3",
+    "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
-    "@angular/router": "6.0.3",
+    "@angular/router": "^6.0.3",
     "@antv/data-set": "^0.8.8",
     "@antv/g2": "3.0.11",
     "@antv/g2-plugin-slider": "2.0.2",
