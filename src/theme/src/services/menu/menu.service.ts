@@ -3,6 +3,7 @@ import { Injectable, Inject, Optional, OnDestroy } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
+import { LocalizationService } from '@abp/localization/localization.service';
 
 @Injectable()
 export class MenuService implements OnDestroy {
@@ -14,38 +15,36 @@ export class MenuService implements OnDestroy {
      * @param _permissionService 权限检测服务
      */
     constructor(
-        private _permissionService: PermissionCheckerService
+        private _permissionService: PermissionCheckerService,
+        private _localizationService: LocalizationService,
     ) {
     }
 
     set menus(items: MenuItem[]) {
         this.data = items;
+        this.processMenu(this.data);
     }
 
     get menus() {
         return this.data;
     }
 
-
     /**
-     * 菜单权限检查
-     * @param menuItem 菜单项
+     * 处理菜单信息
+     * @param menus 菜单
      */
-    checkChildMenuItemPermission(menuItem: MenuItem): boolean {
-        for (let i = 0; i < menuItem.items.length; i++) {
-            let subMenuItem = menuItem.items[i];
-
-            if (subMenuItem.permissionName && this._permissionService.isGranted(subMenuItem.permissionName)) {
-                return true;
+    private processMenu(menus: MenuItem[]) {
+        menus.forEach(item => {
+            item.name = this._localizationService.l(item.name);
+            // 权限校验设置隐藏
+            if (item.permissionName != '' && item.isDisplay) {
+                item.isDisplay = this._permissionService.isGranted(item.permissionName);
             }
 
-            if (subMenuItem.items && subMenuItem.items.length) {
-                return this.checkChildMenuItemPermission(subMenuItem);
-            } else if (!subMenuItem.permissionName) {
-                return true;
+            if (item.items && item.items.length > 0) {
+                this.processMenu(item.items);
             }
-        }
-        return false;
+        });
     }
 
     /**

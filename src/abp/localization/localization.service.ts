@@ -4,9 +4,9 @@
 export class LocalizationService {
 
     /**
-     * 默认的语言Source名称
-     */
-    // static defaultSourceName: string;
+    * 默认的语言Source名称
+    */
+    static localizationSourceName: string = '';
 
     get languages(): abp.localization.ILanguageInfo[] {
         return abp.localization.languages;
@@ -25,13 +25,10 @@ export class LocalizationService {
     }
 
     l(key: string, ...args: any[]): string {
-        args.unshift(key);
-        args.unshift('');
-        return this.ls.apply(this, args);
-    }
-
-    ls(sourcename: string, key: string, ...args: any[]): string {
-        let localizedText = this.localize(key, sourcename);
+        let localizedText = this.localize(
+            key,
+            LocalizationService.localizationSourceName,
+        );
 
         if (!localizedText) {
             localizedText = key;

@@ -14,6 +14,7 @@ import {
   Renderer2,
   Inject,
   Optional,
+  TemplateRef,
 } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
@@ -30,8 +31,11 @@ import {
   ReuseContextI18n,
   ReuseContextCloseEvent,
   ReuseTitle,
+  CloseType,
 } from './interface';
 import { ReuseTabContextService } from './reuse-tab-context.service';
+import { NzDropdownContextComponent, NzDropdownService } from 'ng-zorro-antd';
+import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
   selector: 'reuse-tab',
@@ -39,7 +43,10 @@ import { ReuseTabContextService } from './reuse-tab-context.service';
   <nz-tabset [nzSelectedIndex]="pos" [nzAnimated]="false" nzType="line">
   <nz-tab *ngFor="let i of list; let index = index" [nzTitle]="titleTemplate">
     <ng-template #titleTemplate>
-      <span [context-menu]="i" (click)="to($event, index)" class="name">{{i.title}}</span>
+      <span [context-menu]="i" (click)="to($event, index)" class="name">
+        <i *ngIf="i.icon" [class]="i.icon"></i>
+        {{l(i.title)}}
+      </span>
       <i *ngIf="i.closable" class="anticon anticon-close op" (click)="_close($event, index, false)"></i>
     </ng-template>
   </nz-tab>
@@ -69,9 +76,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   @Input() i18n: ReuseContextI18n;
   /** 是否Debug模式 */
   @Input()
-  get debug() {
-    return this._debug;
-  }
+  get debug() { return this._debug; }
   set debug(value: any) {
     this._debug = toBoolean(value);
   }
@@ -120,6 +125,11 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   @Output() close: EventEmitter<ReuseItem> = new EventEmitter<ReuseItem>();
   // endregion
 
+  /**
+   * 右键菜单服务
+   */
+  private _contextMenuDropdown: NzDropdownContextComponent;
+
   constructor(
     public srv: ReuseTabService,
     private cd: ChangeDetectorRef,
@@ -127,7 +137,10 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute,
     private el: ElementRef,
     private render: Renderer2,
-    @Inject(DOCUMENT) private doc: any
+    @Inject(DOCUMENT) private doc: any,
+    private localizationService: LocalizationService,
+    private nzDropdownService: NzDropdownService//右键菜单
+
   ) {
     const route$ = this.router.events.pipe(
       filter(evt => evt instanceof NavigationEnd),
@@ -135,6 +148,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) =>
       this.genList(res as any),
     );
+
   }
 
   private genTit(title: ReuseTitle): string {
@@ -154,6 +168,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         index,
         active: false,
         last: false,
+        icon: this.srv.getIcon(item.url)
       };
     });
     if (this.showCurrent) {
@@ -180,6 +195,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
           index: ls.length,
           active: false,
           last: false,
+          icon: this.srv.getIcon(url)
         });
         this.pos = ls.length - 1;
       }
@@ -296,4 +312,49 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     this.sub$.unsubscribe();
     if (this.i18n$) this.i18n$.unsubscribe();
   }
+
+
+  l(key: string, ...args: any[]): string {
+    return this.localizationService.l(key, args);
+  }
+
+  /**
+ * 打开右键菜单
+ * @param $event 鼠标事件
+ * @param template 创建右键的模板内容
+ */
+  openContextMenu($event: MouseEvent, template: TemplateRef<void>): void {
+    this._contextMenuDropdown = this.nzDropdownService.create($event, template);
+  }
+  /**
+   * 右键菜单项点击事件
+   * @param $event 当前项点击事件
+   * @param closeType 关闭类型
+   * @param item 当前路由复用项
+   */
+  contextMenuItemClick($event: MouseEvent, closeType: CloseType, item: ReuseItem): void {
+    if (closeType === 'close' && !item.closable) return;
+    if (closeType === 'closeRight' && item.last) return;
+    let includeNonCloseable = $event.ctrlKey; //是否强制清除（按Ctrl键）
+    switch (closeType) { //'close' | 'closeOther' | 'closeRight' | 'clear'
+      case 'close':
+        this.srv.close(item.url, includeNonCloseable);
+        break;
+      case 'closeOther':
+        this.srv.closeOther(item.url, includeNonCloseable);
+        break;
+      case 'closeRight':
+        this.srv.closeRight(item.url, includeNonCloseable);
+        break;
+      case 'clear':
+        this.srv.clear(includeNonCloseable);
+        break;
+      default:
+        this.srv.refresh();
+        break;
+    }
+    //关闭右键菜单
+    this._contextMenuDropdown.close();
+  }
+
 }

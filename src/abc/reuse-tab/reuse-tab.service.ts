@@ -126,6 +126,27 @@ export class ReuseTabService implements OnDestroy {
     this.di('close tag', url);
     return true;
   }
+
+  /**
+   * 根据URL关闭其他标签
+   * @param url 当前URL
+   * @param includeNonCloseable [includeNonCloseable=false] 是否强制包含不可关闭
+   */
+  closeOther(url: string, includeNonCloseable = false) {
+    this._cached.forEach(w => {
+      if (w.url !== url) {
+        if (!includeNonCloseable && w.closable) this.destroy(w._handle);
+      }
+    });
+    //过滤出当前标签，其他标签已经关闭，只显示当前标签
+    this._cached = this._cached.filter(
+      w => w.url === url
+    );
+    this.removeUrlBuffer = null;
+
+    this._cachedChange.next({ active: 'closeOther', list: this._cached });
+  }
+
   /**
    * 清除右边
    *
@@ -225,12 +246,19 @@ export class ReuseTabService implements OnDestroy {
     if (route && route.data && (route.data.titleI18n || route.data.title))
       return <ReuseTitle>{ text: route.data.title, i18n: route.data.titleI18n };
 
-    // const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-    // return menu ? { text: menu.name } : { text: url };
-    const menu = this.getMenu(url);
-    return menu ? { text: menu.name } : { text: url };
+    const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+    return menu ? { text: menu.name, i18n: menu.name } : { text: url };
   }
 
+  /**
+   * 获取菜单对应的图标，如果为空，返回anticon-appstore-o图标
+   * @param url 路由地址
+   * @param route 当前激活路由
+   */
+  getIcon(url: string, route?: ActivatedRouteSnapshot): string {
+    const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+    return menu ? menu.icon : 'anticon anticon-appstore-o';
+  }
   /**
    * 清除标题缓存
    */

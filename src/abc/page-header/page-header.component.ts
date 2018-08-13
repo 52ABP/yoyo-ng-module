@@ -5,32 +5,45 @@ import {
   ContentChild,
   OnInit,
   OnChanges,
-  Inject,
   Optional,
   ViewChild,
   ElementRef,
   AfterViewInit,
   Renderer2,
+  Inject
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { toBoolean, isEmpty } from 'yoyo-ng-module/util';
-import {
-  MenuService,
-  MenuItem,
-  TitleService,
-} from 'yoyo-ng-module/theme';
-import { ReuseTabService } from '../reuse-tab/reuse-tab.service';
+import { TitleService, MenuItem, MenuService } from 'yoyo-ng-module/theme';
+import { ReuseTabService } from 'yoyo-ng-module/abc';
 
 import { AdPageHeaderConfig } from './page-header.config';
+import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
 
 @Component({
-  selector: 'page-header',
+  selector: 'page-header-custom',
   template: `
   <ng-container *ngIf="!breadcrumb; else breadcrumb">
     <nz-breadcrumb *ngIf="paths && paths.length > 0">
-      <nz-breadcrumb-item *ngFor="let i of paths">
-        <ng-container *ngIf="i.link"><a [routerLink]="i.link">{{i.title}}</a></ng-container>
-        <ng-container *ngIf="!i.link">{{i.title}}</ng-container>
+      <nz-breadcrumb-item *ngFor="let i of paths;let isLast=last;">
+        <ng-container *ngIf="i.link">
+            <a [routerLink]="i.link" *ngIf="!isLast&&home_link_enabled">       
+                  <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+                  {{i.title}}
+            </a>
+            <a *ngIf="!isLast&&!home_link_enabled">       
+                <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+                {{i.title}}
+            </a>
+            <a *ngIf="isLast">       
+                  <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+                  {{i.title}}
+            </a>
+         </ng-container>
+        <ng-container *ngIf="!i.link">
+            <i *ngIf="i.icon" class="{{i.icon}}"></i> 
+            {{i.title}}
+        </ng-container>
       </nz-breadcrumb-item>
     </nz-breadcrumb>
   </ng-container>
@@ -38,8 +51,16 @@ import { AdPageHeaderConfig } from './page-header.config';
     <div *ngIf="logo" class="logo"><ng-template [ngTemplateOutlet]="logo"></ng-template></div>
     <div class="main">
       <div class="row">
-        <h1 *ngIf="title" class="title">{{title}}</h1>
-        <div *ngIf="action" class="action"><ng-template [ngTemplateOutlet]="action"></ng-template></div>
+        <h1 *ngIf="title" class="title">
+          {{title}}          
+            <span *ngIf="desc" class="text-sm text-grey-dark">
+              <nz-divider nzType="vertical"></nz-divider>
+              {{desc}}
+            </span>     
+        </h1>       
+        <div *ngIf="action" class="action">
+        <ng-template [ngTemplateOutlet]="action"></ng-template>
+        </div>       
       </div>
       <div class="row">
         <div class="desc" (cdkObserveContent)="checkContent()" #conTpl><ng-content></ng-content><ng-template [ngTemplateOutlet]="content"></ng-template></div>
@@ -73,9 +94,17 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() title: string;
 
+  /**
+   * 页面描述
+   */
+  @Input() desc: string;
+
   @Input() home: string;
 
   @Input() home_link: string;
+
+  //首页链接是否可点击
+  @Input() home_link_enabled = true;
 
   @Input() home_i18n: string;
 
@@ -139,9 +168,10 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     @Optional()
     @Inject(TitleService)
     private titleSrv: TitleService,
-    @Optional()
     @Inject(ReuseTabService)
     private reuseSrv: ReuseTabService,
+    private localizationSrv: LocalizationService,
+
   ) {
     Object.assign(this, cog);
   }
@@ -151,27 +181,26 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   genBreadcrumb() {
-    if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0)
-      return;
+    if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) return;
     const paths: any[] = [];
     this.menus.forEach(item => {
       if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
         return;
-      let title = item.name;
-
-      paths.push({ title, link: item.route });
+      let title = this.l(item.name);
+      paths.push({ title, link: item.route && [item.route], icon: item.icon });
     });
     // add home
     if (this.home) {
-      paths.splice(0, 0, {
-        title: this.home,
+      let homeBreadcrumb = {
+        title: this.l(this.home),
         link: [this.home_link],
-      });
+        icon: 'anticon anticon-home'
+      };
+      paths.splice(0, 0, homeBreadcrumb);
     }
     this.paths = paths;
     return this;
   }
-
   setTitle() {
     if (
       typeof this.title === 'undefined' &&
@@ -179,8 +208,8 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
       this.menus.length > 0
     ) {
       const item = this.menus[this.menus.length - 1];
-
-      this.title = item.name;
+      let title = item.name;
+      this.title = title;
     }
 
     if (this.titleSync) {
@@ -214,5 +243,9 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(): void {
     if (this.inited) this.refresh();
+  }
+
+  l(key: string, ...args: any[]): string {
+    return this.localizationSrv.l(key, args);
   }
 }
