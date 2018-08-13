@@ -1,6 +1,6 @@
 {
   "name": "yoyo-ng-module",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
   "main": "./bundles/yoyo-ng-module.umd.js",
   "module": "./index.js",
@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.3",
+    "@angular/core": "^6.0.3",
     "abp-web-resources": "^3.7.0"
   },
   "dependencies": {
