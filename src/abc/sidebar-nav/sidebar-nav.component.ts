@@ -26,7 +26,7 @@ const FLOATINGCLS = 'nav-floating';
 @Component({
   selector: 'sidebar-nav',
   template: `
-  <ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="collapsed" id="left_menu_ul">
+  <ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="settings.layout.collapsed" id="left_menu_ul">
   <ng-template ngFor let-menuItem [ngForOf]="menuService.menus" let-mainMenuItemIndex="index">
     <li *ngIf="!hasChildren(menuItem)&&menuItem.isDisplay" nz-menu-item routerLinkActive="ant-menu-item-selected">
       <a [routerLink]="[menuItem.route]">
@@ -75,7 +75,7 @@ const FLOATINGCLS = 'nav-floating';
 
   `,
   // templateUrl: './sidebar-nav.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   preserveWhitespaces: false,
 })
 export class SidebarNavComponent implements OnInit {
@@ -89,16 +89,6 @@ export class SidebarNavComponent implements OnInit {
 
   ngOnInit() {
 
-    // event.on
-    abp.event.on('abp.theme-setting.collapsed', collapsed => {
-      this.collapsed = collapsed;
-    });
-
-    const self = this;
-
-    setTimeout(() => {
-      self.collapsed = self.settings.layout.collapsed;
-    }, 1);
   }
 
   hasChildren(item: MenuItem): boolean {
