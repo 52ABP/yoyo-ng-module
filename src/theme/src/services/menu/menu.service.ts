@@ -7,7 +7,7 @@ import { share } from 'rxjs/operators';
 @Injectable()
 export class MenuService implements OnDestroy {
 
-    private data: MenuItem[] = this.getMenu();
+    private data: MenuItem[] = [];
     private _change$: BehaviorSubject<MenuItem[]> = new BehaviorSubject<MenuItem[]>([]);
     /**
      * 构造函数
@@ -24,31 +24,6 @@ export class MenuService implements OnDestroy {
 
     get menus() {
         return this.data;
-    }
-    /**
-     * 设置菜单项
-     */
-    private getMenu(): MenuItem[] {
-        return [
-            new MenuItem('Dashboard', 'Pages.Administration.Host.Dashboard', 'anticon anticon-line-chart', '/app/admin/hostDashboard'),
-            new MenuItem('Dashboard', 'Pages.Tenant.Dashboard', 'anticon anticon-line-chart', '/app/main/dashboard'),
-            new MenuItem('Tenants', 'Pages.Tenants', 'anticon anticon-contacts', '/app/admin/tenants'),
-            new MenuItem('Editions', 'Pages.Editions', 'anticon anticon-appstore-o', '/app/admin/editions'),
-            new MenuItem('Administration', '', 'anticon anticon-layout', '', [
-                new MenuItem('OrganizationUnits', 'Pages.Administration.OrganizationUnits', 'anticon anticon-share-alt', '/app/admin/organization-units'),
-                new MenuItem('Roles', 'Pages.Administration.Roles', 'anticon anticon-medicine-box', '/app/admin/roles'),
-                new MenuItem('Users', 'Pages.Administration.Users', 'anticon anticon-user', '/app/admin/users'),
-                new MenuItem('Languages', 'Pages.Administration.Languages', 'anticon anticon-global', '/app/admin/languages'),
-                new MenuItem('AuditLogs', 'Pages.Administration.AuditLogs', 'anticon anticon-exception', '/app/admin/auditLogs'),
-                new MenuItem('Maintenance', 'Pages.Administration.Host.Maintenance', 'anticon anticon-tool', '/app/admin/maintenance'),
-                new MenuItem('Subscription', 'Pages.Administration.Tenant.SubscriptionManagement', 'anticon anticon-share-alt', '/app/admin/subscription-management'),
-                new MenuItem('LayoutSettings', 'Pages.Administration.LayoutSettings', 'anticon anticon-eye-o', '/app/admin/layout-settings'),
-                new MenuItem('Settings', 'Pages.Administration.Host.Settings', 'anticon anticon-setting', '/app/admin/hostSettings'),
-                new MenuItem('Settings', 'Pages.Administration.Tenant.Settings', 'anticon anticon-setting', '/app/admin/tenantSettings')
-            ]),
-            //不显示在UI上的
-            new MenuItem('Notifications', '', 'anticon anticon-bell', '/app/notifications', null, false),
-        ];
     }
 
 
