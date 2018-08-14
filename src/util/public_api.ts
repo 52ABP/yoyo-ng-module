@@ -11,4 +11,7 @@ export * from './src/other/check';
 export * from './src/other/other';
 export * from './src/other/style';
 
+export * from './src/array/array.service'
+export * from './src/array/array.config'
+
 export * from './util.module';
