@@ -1,4 +1,4 @@
-<ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="collapsed" id="left_menu_ul">
+<ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="settings.layout.collapsed" id="left_menu_ul">
   <ng-template ngFor let-menuItem [ngForOf]="menuService.menus" let-mainMenuItemIndex="index">
     <li *ngIf="!hasChildren(menuItem)&&menuItem.isDisplay" nz-menu-item routerLinkActive="ant-menu-item-selected">
       <a [routerLink]="[menuItem.route]">
@@ -7,21 +7,21 @@
       </a>
     </li>
 
-    <li *ngIf="hasChildren(menuItem)&&menuItem.isDisplay" nz-submenu>
+    <li *ngIf="hasChildren(menuItem)&&menuItem.isDisplay" nz-submenu [nzOpen]="menuItem.isOpen">
       <span title>
         <i *ngIf="menuItem.icon" class="{{menuItem.icon}}"></i>
         <span>{{menuItem.name}}</span>
       </span>
       <ul>
         <ng-template ngFor let-subMenuItem [ngForOf]="menuItem.items" let-mainMenuItemIndex="index">
-          <li *ngIf="!hasChildren(subMenuItem)&&subMenuItem.isDisplay" nz-menu-item>
+          <li *ngIf="!hasChildren(subMenuItem)&&subMenuItem.isDisplay" nz-menu-item routerLinkActive="ant-menu-item-selected">
             <a [routerLink]="[subMenuItem.route]">
               <i *ngIf="subMenuItem.icon" class="{{subMenuItem.icon}}"></i>
               <span>{{subMenuItem.name}}</span>
             </a>
           </li>
 
-          <li *ngIf="hasChildren(subMenuItem)&&subMenuItem.isDisplay" nz-submenu>
+          <li *ngIf="hasChildren(subMenuItem)&&subMenuItem.isDisplay" nz-submenu [nzOpen]="menuItem.isOpen">
             <span title>
               <i *ngIf="subMenuItem.icon" class="{{subMenuItem.icon}}"></i>
               <span>{{subMenuItem.name}}</span>
@@ -29,8 +29,7 @@
 
             <ul>
               <ng-template ngFor let-subSubMenuItem [ngForOf]="subMenuItem.items" let-mainMenuItemIndex="index">
-                <li *ngIf="!hasChildren(subSubMenuItem)&&subSubMenuItem.isDisplay" nz-menu-item
-                  routerLinkActive="ant-menu-item-selected">
+                <li *ngIf="!hasChildren(subSubMenuItem)&&subSubMenuItem.isDisplay" nz-menu-item routerLinkActive="ant-menu-item-selected">
                   <a [routerLink]="[subSubMenuItem.route]">
                     <i *ngIf="subSubMenuItem.icon" class="{{subSubMenuItem.icon}}"></i>
                     <span>{{subSubMenuItem.name}}</span>
