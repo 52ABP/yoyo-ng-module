@@ -1,0 +1,36 @@
+{
+  "name": "yoyo-ng-module",
+  "version": "1.1.24",
+  "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
+  "main": "./bundles/yoyo-ng-module.umd.js",
+  "module": "./index.js",
+  "scripts": {
+    "ngc": "ngc",
+    "cleanup": "rimraf dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map  dist/LICENSE dist/README.md",
+    "bundling": "rollup -c",
+    "minify": "uglifyjs dist/bundles/yoyo-ng-module.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/yoyo-ng-module.umd.min.js",
+    "build": "npm run cleanup && npm run ngc && npm run bundling && npm run minify",
+    "publish-to-npm": "cd dist && npm publish"
+  },
+  "repository": "git+https://github.com/52ABP/yoyo-ng-module.git",
+  "keywords": [
+    "abp",
+    "antd",
+    "ng-zorro-antd",
+    "52abp",
+    "angular"
+  ],
+  "private": false,
+  "author": "ltm0203<werltm@hotmail.com>",
+  "license": "MIT",
+  "author.email": "werltm@hotmail.com",
+  "bugs": {
+    "url": "https://github.com/52ABP/yoyo-ng-module/issues"
+  },
+  "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
+  "peerDependencies": {
+    "abp-web-resources": "^3.7.0",
+    "ng-zorro-antd": "^1.0.0",
+    "qrious": "^4.0.2"
+  }
+}

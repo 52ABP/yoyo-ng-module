@@ -1,0 +1,32 @@
+{
+    "extends": "../tsconfig-build.json",
+
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": ".",
+        "paths": {
+            "yoyo-ng-module": ["./"],
+            "yoyo-ng-module/*": ["./*"],
+            "@abp/*": ["./abp/*"]
+        },
+        "outDir": "../dist"
+    },
+
+    "files": [
+        "index.ts",
+        "abp/index.ts",
+        "abc/index.ts",
+        "theme/index.ts",
+        "util/index.ts",
+        "typings.d.ts",
+        "../node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
+    ],
+
+    "angularCompilerOptions": {
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": false,
+        "skipTemplateCodegen": true,
+        "flatModuleOutFile": "index.js",
+        "flatModuleId": "@delon/abc"
+    }
+}

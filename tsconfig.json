@@ -1,18 +1,39 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
+    "baseUrl": ".",
+    "declaration": true,
+    "stripInternal": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "module": "es2015",
     "target": "es5",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
-    "baseUrl": "./",
+    "lib": ["es2015", "dom"],
+    "types": [],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "importHelpers": true,
+    "outDir": "dist",
     "paths": {
-      "@delon/*": ["./packages/*"]
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs/*": ["node_modules/rxjs/*"],
+      "@abp/*": ["./src/abp/*"],
+      "yoyo-ng-module": ["./src/"],
+      "yoyo-ng-module/*": ["./src/*"]
     }
+  },
+  "files": [
+    "index.ts",
+    "src/index.ts",
+    "src/abp/index.ts",
+    "src/abc/index.ts",
+    "src/theme/index.ts",
+    "src/util/index.ts",
+    "src/typings.d.ts",
+    "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
   }
 }
