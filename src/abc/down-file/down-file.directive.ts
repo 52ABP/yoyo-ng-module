@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { HttpResponse, HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { _HttpClient } from '../../theme/index';
+import { _HttpClient } from 'yoyo-ng-module/src/theme/index';
 
 /**
  * 文件下载

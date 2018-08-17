@@ -16,7 +16,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT, LocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService, SettingsService, MenuItem } from '../../theme/index';
+import { MenuService, SettingsService, MenuItem } from 'yoyo-ng-module/src/theme/index';
 
 import { Nav } from './interface';
 import { ReuseTabService } from '../reuse-tab/reuse-tab.service';

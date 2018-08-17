@@ -18,7 +18,9 @@
     "outDir": "dist",
     "paths": {
       "@angular/core": ["node_modules/@angular/core"],
-      "rxjs/*": ["node_modules/rxjs/*"]
+      "rxjs/*": ["node_modules/rxjs/*"],
+      "yoyo-ng-module":["./"],
+      "yoyo-ng-module/*":["./*"]
     }
   },
   "files": [

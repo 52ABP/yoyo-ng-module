@@ -26,8 +26,8 @@ import {
   YNPipe,
   ModalHelper,
   ModalHelperOptions,
-} from '../../theme/index';
-import { deepGet, deepCopy, toBoolean, toNumber } from '../../util/index';
+} from 'yoyo-ng-module/src/theme/index';
+import { deepGet, deepCopy, toBoolean, toNumber } from 'yoyo-ng-module/src/util/index';
 
 import {
   SimpleTableColumn,
