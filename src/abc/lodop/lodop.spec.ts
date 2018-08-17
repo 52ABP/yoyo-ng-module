@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { Observable, concat } from 'rxjs';
 import { tap, delay, filter, flatMap } from 'rxjs/operators';
 
-import { LazyService } from '../../util/index';
+import { LazyService } from 'yoyo-ng-module/src/util/index';
 
 import { LodopService } from './lodop.service';
 import { AdLodopConfig } from './lodop.config';

@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { toBoolean } from '../../util/index';
+import { toBoolean } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'tag-select',

@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { Injector, Optional } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { deepCopy } from '../../util/index';
+import { deepCopy } from 'yoyo-ng-module/src/util/index';
 import { HttpClient } from '@angular/common/http';
 
 import { _HttpClient } from './http.client';

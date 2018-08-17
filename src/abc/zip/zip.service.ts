@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { LazyService, LazyResult } from '../../util/index';
+import { LazyService, LazyResult } from 'yoyo-ng-module/src/util/index';
 import { ZipConfig, DA_ZIP_CONFIG, ZipSaveOptions } from './interface';
 
 declare var JSZip: any;

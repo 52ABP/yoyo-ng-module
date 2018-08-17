@@ -10,7 +10,7 @@ import { RouterModule, Router } from '@angular/router';
 import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
 
 import { AlainThemeModule, MenuService, SettingsService } from '../../theme/index';
-import { deepCopy } from '../../util/index';
+import { deepCopy } from 'yoyo-ng-module/src/util/index';
 
 import { AdSidebarNavModule } from './sidebar-nav.module';
 import { SidebarNavComponent } from './sidebar-nav.component';

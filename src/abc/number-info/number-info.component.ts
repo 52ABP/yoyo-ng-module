@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { toNumber } from '../../util/index';
+import { toNumber } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'number-info',

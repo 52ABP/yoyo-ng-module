@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DelonUtilModule } from '../../util/index';
+import { DelonUtilModule } from 'yoyo-ng-module/src/util/index';
 
 import { ZipService } from './zip.service';
 import { ZipConfig, DA_ZIP_CONFIG } from './interface';

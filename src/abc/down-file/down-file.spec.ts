@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as fs from 'file-saver';
-import { _HttpClient } from '../../theme/index';
+import { _HttpClient } from 'yoyo-ng-module/src/theme/index';
 
 import { AdDownFileModule } from './down-file.module';
 
@@ -203,7 +203,7 @@ class TestComponent {
 
   fileName = 'demo中文';
 
-  success() {}
+  success() { }
 
-  error() {}
+  error() { }
 }

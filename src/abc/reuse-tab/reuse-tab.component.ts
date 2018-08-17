@@ -20,7 +20,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Subscription, combineLatest } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
-import { toNumber, toBoolean } from '../../util/index';
+import { toNumber, toBoolean } from 'yoyo-ng-module/src/util/index';
 
 import { ReuseTabService } from './reuse-tab.service';
 import {

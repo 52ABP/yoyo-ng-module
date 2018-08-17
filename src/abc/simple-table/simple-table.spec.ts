@@ -22,7 +22,7 @@ import {
   DatePipe,
 } from '../../theme/index';
 import { DelonACLModule, ACLService } from '../../acl';
-import { deepCopy, deepGet } from '../../util/index';
+import { deepCopy, deepGet } from 'yoyo-ng-module/src/util/index';
 import { of, Observable, Subject } from 'rxjs';
 
 import {

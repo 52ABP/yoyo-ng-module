@@ -5,7 +5,7 @@ import {
   Renderer2,
   Input,
 } from '@angular/core';
-import { toNumber } from '../../util/index';
+import { toNumber } from 'yoyo-ng-module/src/util/index';
 import { AdSHFConfig } from './config';
 
 @Directive({

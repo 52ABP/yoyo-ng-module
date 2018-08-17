@@ -17,7 +17,7 @@ npm install yoyo-ng-module/util --save
 导入 `DelonUtilModule` 模块：
 
 ```typescript
-import { DelonUtilModule } from '../../util/index';
+import { DelonUtilModule } from 'yoyo-ng-module/src/util/index';
 
 @NgModule({
   imports: [
@@ -59,7 +59,7 @@ export class DelonModule {
 
 ```ts
 import { Component } from '@angular/core';
-import { yuan } from '../../util/index';
+import { yuan } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'app-demo',
