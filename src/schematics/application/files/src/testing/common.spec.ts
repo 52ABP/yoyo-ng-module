@@ -10,7 +10,7 @@ import {
   MenuService,
   ScrollService,
   _HttpClient,
-} from '../../theme';
+} from '../../theme/index';
 import { DelonAuthModule } from '../../auth';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';

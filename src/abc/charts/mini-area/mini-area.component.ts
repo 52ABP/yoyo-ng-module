@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   NgZone,
 } from '@angular/core';
-import { toNumber, toBoolean } from '../../../util';
+import { toNumber, toBoolean } from '../../../util/index';
 
 @Component({
   selector: 'g2-mini-area',

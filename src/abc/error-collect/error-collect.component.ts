@@ -12,7 +12,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toNumber } from '../../util';
+import { toNumber } from '../../util/index';
 import { AdErrorCollectConfig } from './error-collect.config';
 
 /**

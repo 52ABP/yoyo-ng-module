@@ -12,8 +12,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { toBoolean } from '../../util';
-import { deepCopy } from '../../util';
+import { toBoolean } from '../../util/index';
+import { deepCopy } from '../../util/index';
 
 import { DelonFormConfig } from './config';
 import { di, retrieveSchema, FORMATMAPS, resolveIf } from './utils';

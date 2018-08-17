@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild<% if(!!viewEncapsulation) { %>, ViewEncaps
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';<% } %>
 import { <% if(modal) { %>NzModalRef, <% } %>NzMessageService } from 'ng-zorro-antd';
-import { _HttpClient } from '../../theme';
+import { _HttpClient } from '../../theme/index';
 import { SFSchema, SFUISchema } from '../../form';
 
 @Component({

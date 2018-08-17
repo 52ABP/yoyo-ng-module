@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ControlWidget } from '../../widget';
 import { SFSchemaEnum } from '../../schema';
-import { getData } from '../../utils';
+import { getData } from '../../util/indexs';
 
 @Component({
   selector: 'sf-tag',

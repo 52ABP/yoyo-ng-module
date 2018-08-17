@@ -26,7 +26,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import { preloaderFinished } from '../../theme';
+import { preloaderFinished } from '../../theme/index';
 preloaderFinished();
 
 import { hmrBootstrap } from './hmr';
@@ -63,7 +63,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import { preloaderFinished } from '../../theme';
+import { preloaderFinished } from '../../theme/index';
 preloaderFinished();
 
 if (environment.production) {

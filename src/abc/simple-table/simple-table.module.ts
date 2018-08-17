@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DelonUtilModule } from '../../util';
+import { DelonUtilModule } from '../../util/index';
 
 import { SimpleTableComponent } from './simple-table.component';
 import { SimpleTableRowDirective } from './simple-table-row.directive';

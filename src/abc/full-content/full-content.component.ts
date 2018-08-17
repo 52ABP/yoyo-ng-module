@@ -16,7 +16,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toBoolean, toNumber } from '../../util';
+import { toBoolean, toNumber } from '../../util/index';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { FullContentService } from './full-content.service';

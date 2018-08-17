@@ -12,9 +12,9 @@ describe('NgAlainSchematic: application', () => {
     beforeEach(() => ({ runner, tree } = createAlainApp()));
     it(`should add yoyo-ng-module to dependencies`, () => {
       const packageJson = JSON.parse(tree.readContent('package.json'));
-      expect(packageJson.dependencies['../../theme']).toBeDefined();
+      expect(packageJson.dependencies['../../theme/index']).toBeDefined();
       expect(packageJson.dependencies['../../abc']).toBeDefined();
-      expect(packageJson.dependencies['../../util']).toBeDefined();
+      expect(packageJson.dependencies['../../util/index']).toBeDefined();
       expect(packageJson.dependencies['../../acl']).toBeDefined();
       expect(packageJson.dependencies['../../auth']).toBeDefined();
       expect(packageJson.dependencies['../../cache']).toBeDefined();

@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DelonUtilModule } from '../../util';
+import { DelonUtilModule } from '../../util/index';
 
 import { PageHeaderComponent } from './page-header.component';
 import { AdPageHeaderConfig } from './page-header.config';

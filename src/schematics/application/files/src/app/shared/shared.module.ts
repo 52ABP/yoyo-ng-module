@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 // delon
-import { AlainThemeModule } from '../../theme';
+import { AlainThemeModule } from '../../theme/index';
 import { DelonABCModule } from '../../abc';
 import { DelonACLModule } from '../../acl';
 <% if (form) { %>import { DelonFormModule } from '../../form';<% } %><% if (i18n) { %>

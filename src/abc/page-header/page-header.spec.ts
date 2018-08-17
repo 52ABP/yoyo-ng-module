@@ -16,7 +16,7 @@ import {
   AlainI18NService,
   ALAIN_I18N_TOKEN,
   TitleService,
-} from '../../theme';
+} from '../../theme/index';
 import { DelonACLModule } from '../../acl';
 
 import { AdPageHeaderModule } from './page-header.module';

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SettingsService } from '../../theme';
+import { SettingsService } from '../../theme/index';
 
 @Component({
   selector: 'layout-header',

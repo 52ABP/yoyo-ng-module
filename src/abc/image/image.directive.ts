@@ -8,7 +8,7 @@ import {
   OnInit,
   SimpleChange,
 } from '@angular/core';
-import { deepCopy } from '../../util';
+import { deepCopy } from '../../util/index';
 import { AdImageConfig } from './image.config';
 
 /**

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { ControlWidget } from '../../widget';
-import { getData, getEnum } from '../../utils';
+import { getData, getEnum } from '../../util/indexs';
 import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
 import { FormProperty, PropertyGroup } from '../../model/form.property';
 import { NzMentionComponent } from 'ng-zorro-antd';

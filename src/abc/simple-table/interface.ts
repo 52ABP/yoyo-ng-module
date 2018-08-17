@@ -1,5 +1,5 @@
 import { SimpleTableComponent } from './simple-table.component';
-import { ModalHelperOptions } from '../../theme';
+import { ModalHelperOptions } from '../../theme/index';
 
 export type CompareFn = ((a: any, b: any) => number);
 

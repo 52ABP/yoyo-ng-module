@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { startWith, map, flatMap, debounceTime } from 'rxjs/operators';
 import { ControlWidget } from '../../widget';
 import { SFSchemaEnum } from '../../schema';
-import { getCopyEnum, getEnum, toBool } from '../../utils';
+import { getCopyEnum, getEnum, toBool } from '../../util/indexs';
 
 export const EMAILSUFFIX = [
   'qq.com',

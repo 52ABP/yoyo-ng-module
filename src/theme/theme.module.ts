@@ -1,4 +1,4 @@
-import { PermissionCheckerService } from '../abp';
+import { PermissionCheckerService } from '../abp/index';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';

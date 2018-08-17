@@ -7,7 +7,7 @@ title: 饼状图
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { yuan } from '../../util';
+import { yuan } from '../../util/index';
 
 @Component({
   selector: 'app-demo',

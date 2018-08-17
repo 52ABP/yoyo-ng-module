@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { toBoolean } from '../../util';
+import { toBoolean } from '../../util/index';
 
 @Component({
   selector: 'tag-select',

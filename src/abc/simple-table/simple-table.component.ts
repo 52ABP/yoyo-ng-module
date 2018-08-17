@@ -26,8 +26,8 @@ import {
   YNPipe,
   ModalHelper,
   ModalHelperOptions,
-} from '../../theme';
-import { deepGet, deepCopy, toBoolean, toNumber } from '../../util';
+} from '../../theme/index';
+import { deepGet, deepCopy, toBoolean, toNumber } from '../../util/index';
 
 import {
   SimpleTableColumn,

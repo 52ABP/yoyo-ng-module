@@ -7,7 +7,7 @@ import {
 } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { deepGet, deepCopy } from '../../util';
+import { deepGet, deepCopy } from '../../util/index';
 
 import { SFSchema } from '../src/schema';
 import { SFUISchema } from '../src/schema/ui';

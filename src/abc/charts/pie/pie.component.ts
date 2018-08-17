@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { toNumber, toBoolean } from '../../../util';
+import { toNumber, toBoolean } from '../../../util/index';
 
 @Component({
   selector: 'g2-pie',

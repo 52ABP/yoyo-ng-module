@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { _HttpClient } from '../../theme';
+import { _HttpClient } from '../../theme/index';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlWidget } from '../../widget';
-import { getData, toBool } from '../../utils';
+import { getData, toBool } from '../../util/indexs';
 import { SFSchemaEnum } from '../../schema';
 
 @Component({

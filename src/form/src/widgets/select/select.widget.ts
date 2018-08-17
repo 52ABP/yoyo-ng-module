@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlWidget } from '../../widget';
 import { SFSchemaEnum } from '../../schema';
-import { getData, toBool } from '../../utils';
+import { getData, toBool } from '../../util/indexs';
 
 @Component({
   selector: 'sf-select',

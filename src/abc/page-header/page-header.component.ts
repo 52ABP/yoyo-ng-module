@@ -13,12 +13,12 @@ import {
   Inject
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { toBoolean, isEmpty } from '../../util';
-import { TitleService, MenuItem, MenuService } from '../../theme';
-import { ReuseTabService } from '../../abc';
+import { toBoolean, isEmpty } from '../../util/index';
+import { TitleService, MenuItem, MenuService } from '../../theme/index';
+import { ReuseTabService } from '../../abc/index';
 
 import { AdPageHeaderConfig } from './page-header.config';
-import { LocalizationService } from '../../abp/localization/localization.service';
+import { LocalizationService } from '../../abp/index';
 
 @Component({
   selector: 'page-header',

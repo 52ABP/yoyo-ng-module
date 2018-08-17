@@ -1,4 +1,4 @@
-import { PermissionCheckerService, LocalizationService } from '../../../abp';
+import { PermissionCheckerService, LocalizationService } from '../../../abp/index';
 import { Injectable, Inject, Optional, OnDestroy } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';

@@ -20,9 +20,9 @@ import {
   AlainThemeModule,
   ALAIN_I18N_TOKEN,
   DatePipe,
-} from '../../theme';
+} from '../../theme/index';
 import { DelonACLModule, ACLService } from '../../acl';
-import { deepCopy, deepGet } from '../../util';
+import { deepCopy, deepGet } from '../../util/index';
 import { of, Observable, Subject } from 'rxjs';
 
 import {

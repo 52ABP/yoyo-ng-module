@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlWidget } from '../../widget';
 import * as format_ from 'date-fns/format';
-import { toBool } from '../../utils';
+import { toBool } from '../../util/indexs';
 
 const format = format_;
 

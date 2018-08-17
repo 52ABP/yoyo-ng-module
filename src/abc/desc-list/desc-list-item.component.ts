@@ -7,7 +7,7 @@ import {
   AfterViewInit,
   Renderer2,
 } from '@angular/core';
-import { isEmpty, toBoolean } from '../../util';
+import { isEmpty, toBoolean } from '../../util/index';
 
 @Component({
   selector: 'desc-list-item',

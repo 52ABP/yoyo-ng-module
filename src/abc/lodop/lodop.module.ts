@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { DelonUtilModule } from '../../util';
+import { DelonUtilModule } from '../../util/index';
 
 import { AdLodopConfig } from './lodop.config';
 import { LodopService } from './lodop.service';

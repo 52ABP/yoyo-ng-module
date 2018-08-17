@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { toNumber, toBoolean } from '../../util';
+import { toNumber, toBoolean } from '../../util/index';
 
 import { NoticeItem } from './interface';
 

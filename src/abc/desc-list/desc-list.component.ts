@@ -11,7 +11,7 @@ import {
   QueryList,
   SimpleChange,
 } from '@angular/core';
-import { toNumber } from '../../util';
+import { toNumber } from '../../util/index';
 import { DescListItemComponent } from './desc-list-item.component';
 import { AdDescListConfig } from './desc-list.config';
 

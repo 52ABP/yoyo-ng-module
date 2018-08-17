@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlWidget } from '../../widget';
-import { toBool } from '../../utils';
+import { toBool } from '../../util/indexs';
 
 @Component({
   selector: 'sf-textarea',

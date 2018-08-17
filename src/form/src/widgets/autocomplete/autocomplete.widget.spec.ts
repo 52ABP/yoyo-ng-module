@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { NzAutocompleteComponent } from 'ng-zorro-antd';
-import { deepCopy } from '../../util';
+import { deepCopy } from '../../util/index';
 
 import {
   builder,

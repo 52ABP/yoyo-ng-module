@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
-import { LazyService, LazyResult } from '../../util';
+import { LazyService, LazyResult } from '../../util/index';
 import {
   XlsxExportOptions,
   DA_XLSX_CONFIG,

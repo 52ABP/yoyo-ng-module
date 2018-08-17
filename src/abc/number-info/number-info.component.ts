@@ -8,7 +8,7 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { toNumber } from '../../util';
+import { toNumber } from '../../util/index';
 
 @Component({
   selector: 'number-info',

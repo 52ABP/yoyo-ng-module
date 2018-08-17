@@ -14,7 +14,7 @@ import {
 } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 
-import { _HttpClient } from '../../theme';
+import { _HttpClient } from '../../theme/index';
 
 import { ITokenModel } from './interface';
 import { DelonAuthConfig } from '../auth.config';

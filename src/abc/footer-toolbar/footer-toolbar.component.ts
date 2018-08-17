@@ -10,7 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toBoolean } from '../../util';
+import { toBoolean } from '../../util/index';
 
 const CLS = 'ad-footer-toolbar';
 

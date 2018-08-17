@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
-import { deepCopy } from '../../util';
+import { deepCopy } from '../../util/index';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 

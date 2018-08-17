@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SettingsService } from '../../theme';
+import { SettingsService } from '../../theme/index';
 
 @Component({
   selector   : 'layout-sidebar',

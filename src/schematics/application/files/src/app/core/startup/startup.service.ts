@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { zip } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from '../../theme';
+import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from '../../theme/index';
 import { DA_SERVICE_TOKEN, ITokenService } from '../../auth';
 import { ACLService } from '../../acl';<% if (i18n) { %>
 import { TranslateService } from '@ngx-translate/core';

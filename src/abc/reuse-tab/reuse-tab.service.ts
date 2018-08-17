@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, Optional, Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { MenuService } from '../../theme';
+import { MenuService } from '../../theme/index';
 import {
   ReuseTabCached,
   ReuseTabMatchMode,

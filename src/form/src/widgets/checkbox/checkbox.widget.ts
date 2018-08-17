@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ControlWidget } from '../../widget';
-import { getData } from '../../utils';
+import { getData } from '../../util/indexs';
 import { SFSchemaEnum } from '../../schema';
 
 @Component({

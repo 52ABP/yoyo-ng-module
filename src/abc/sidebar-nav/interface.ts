@@ -1,4 +1,4 @@
-import { MenuItem } from '../../theme';
+import { MenuItem } from '../../theme/index';
 
 export interface Nav extends MenuItem {
   /**

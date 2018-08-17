@@ -7,7 +7,7 @@ import { MenuService } from '../menu/menu.service';
 import { Menu } from '../menu/interface';
 import { AlainI18NService, AlainI18NServiceFake } from '../i18n/i18n';
 import { TitleService } from './title.service';
-import { AlainThemeModule } from '../../theme.module';
+import { AlainThemeModule } from '../../theme/index.module';
 import { ALAIN_I18N_TOKEN } from '../i18n/i18n';
 
 describe('Service: Title', () => {

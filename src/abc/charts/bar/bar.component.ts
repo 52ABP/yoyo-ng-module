@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { toBoolean, toNumber } from '../../../util';
+import { toBoolean, toNumber } from '../../../util/index';
 
 @Component({
   selector: 'g2-bar',
