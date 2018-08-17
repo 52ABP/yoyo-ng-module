@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
-import { deepCopy } from 'yoyo-ng-module/util';
+import { deepCopy } from '../../util';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 

@@ -1,4 +1,4 @@
-import { PermissionCheckerService } from 'yoyo-ng-module/abp/auth/permission-checker.service';
+import { PermissionCheckerService } from '../abp';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';

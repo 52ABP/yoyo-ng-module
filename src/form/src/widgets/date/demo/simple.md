@@ -16,7 +16,7 @@ Simplest of usage.
 ```ts
 import { Component } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { SFSchema } from 'yoyo-ng-module/form';
+import { SFSchema } from '../../form';
 
 @Component({
   selector: 'app-demo',

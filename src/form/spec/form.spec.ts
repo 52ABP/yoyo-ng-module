@@ -3,7 +3,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { builder, TestFormComponent, SFPage, SCHEMA } from './base.spec';
 import { SFSchema } from '../src/schema/index';
 import { SFUISchemaItem, SFUISchema } from '../src/schema/ui';
-import { deepCopy } from 'yoyo-ng-module/util';
+import { deepCopy } from '../../util';
 
 describe('form: component', () => {
   let fixture: ComponentFixture<TestFormComponent>;

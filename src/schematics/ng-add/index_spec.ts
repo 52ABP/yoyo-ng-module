@@ -13,7 +13,7 @@ describe('Schematic: ng-add', () => {
 
   it('should dependencies yoyo-ng-module of an application', () => {
     const packageJson = JSON.parse(tree.readContent('package.json'));
-    expect(packageJson.dependencies['yoyo-ng-module/theme']).toBeDefined();
+    expect(packageJson.dependencies['../../theme']).toBeDefined();
     expect(packageJson.dependencies['@antv/g2']).not.toBeDefined();
   });
 

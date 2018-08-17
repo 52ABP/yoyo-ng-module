@@ -20,9 +20,9 @@ import {
   AlainThemeModule,
   ALAIN_I18N_TOKEN,
   DatePipe,
-} from 'yoyo-ng-module/theme';
-import { DelonACLModule, ACLService } from 'yoyo-ng-module/acl';
-import { deepCopy, deepGet } from 'yoyo-ng-module/util';
+} from '../../theme';
+import { DelonACLModule, ACLService } from '../../acl';
+import { deepCopy, deepGet } from '../../util';
 import { of, Observable, Subject } from 'rxjs';
 
 import {

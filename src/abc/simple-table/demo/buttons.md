@@ -7,7 +7,7 @@ title: 自定义按钮组
 
 ```ts
 import { Component, Input } from '@angular/core';
-import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter, SimpleTableButton } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter, SimpleTableButton } from '../../abc';
 import { NzMessageService } from 'ng-zorro-antd';
 import { DemoModalComponent } from 'app/shared/components/modal/demo.component';
 

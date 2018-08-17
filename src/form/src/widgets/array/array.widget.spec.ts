@@ -1,6 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { deepCopy } from 'yoyo-ng-module/util';
+import { deepCopy } from '../../util';
 import {
   builder,
   TestFormComponent,

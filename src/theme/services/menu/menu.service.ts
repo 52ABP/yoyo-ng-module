@@ -1,9 +1,8 @@
-import { PermissionCheckerService } from 'yoyo-ng-module/abp/auth/permission-checker.service';
+import { PermissionCheckerService, LocalizationService } from '../../../abp';
 import { Injectable, Inject, Optional, OnDestroy } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { LocalizationService } from '@abp/localization/localization.service';
 
 @Injectable()
 export class MenuService implements OnDestroy {

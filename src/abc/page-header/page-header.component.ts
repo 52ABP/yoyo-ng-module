@@ -13,12 +13,12 @@ import {
   Inject
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { toBoolean, isEmpty } from 'yoyo-ng-module/util';
-import { TitleService, MenuItem, MenuService } from 'yoyo-ng-module/theme';
-import { ReuseTabService } from 'yoyo-ng-module/abc';
+import { toBoolean, isEmpty } from '../../util';
+import { TitleService, MenuItem, MenuService } from '../../theme';
+import { ReuseTabService } from '../../abc';
 
 import { AdPageHeaderConfig } from './page-header.config';
-import { LocalizationService } from 'yoyo-ng-module/abp/localization/localization.service';
+import { LocalizationService } from '../../abp/localization/localization.service';
 
 @Component({
   selector: 'page-header',

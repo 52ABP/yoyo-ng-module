@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   NgZone,
 } from '@angular/core';
-import { toNumber, toBoolean } from 'yoyo-ng-module/util';
+import { toNumber, toBoolean } from '../../../util';
 
 @Component({
   selector: 'g2-mini-area',

@@ -31,7 +31,7 @@ JSON Schema 校验过程中会生产一组错误信息，每一个错误都有�
 在根模块重新注入 `DelonFormConfig` 实例：
 
 ```ts
-import { DelonFormConfig } from 'yoyo-ng-module/abc';
+import { DelonFormConfig } from '../../abc';
 export function fnDelonFormConfig(): DelonFormConfig {
   return Object.assign(new DelonFormConfig(), <DelonFormConfig>{
     errors: {

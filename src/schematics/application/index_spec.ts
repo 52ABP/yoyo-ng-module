@@ -12,13 +12,13 @@ describe('NgAlainSchematic: application', () => {
     beforeEach(() => ({ runner, tree } = createAlainApp()));
     it(`should add yoyo-ng-module to dependencies`, () => {
       const packageJson = JSON.parse(tree.readContent('package.json'));
-      expect(packageJson.dependencies['yoyo-ng-module/theme']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/abc']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/util']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/acl']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/auth']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/cache']).toBeDefined();
-      expect(packageJson.dependencies['yoyo-ng-module/mock']).toBeDefined();
+      expect(packageJson.dependencies['../../theme']).toBeDefined();
+      expect(packageJson.dependencies['../../abc']).toBeDefined();
+      expect(packageJson.dependencies['../../util']).toBeDefined();
+      expect(packageJson.dependencies['../../acl']).toBeDefined();
+      expect(packageJson.dependencies['../../auth']).toBeDefined();
+      expect(packageJson.dependencies['../../cache']).toBeDefined();
+      expect(packageJson.dependencies['../../mock']).toBeDefined();
     });
   });
 

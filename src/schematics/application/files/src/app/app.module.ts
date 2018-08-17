@@ -10,7 +10,7 @@ import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
 import { StartupService } from '@core/startup/startup.service';
 import { DefaultInterceptor } from '@core/net/default.interceptor';
-import { SimpleInterceptor } from 'yoyo-ng-module/auth';
+import { SimpleInterceptor } from '../../auth';
 // angular i18n
 import { registerLocaleData } from '@angular/common';
 import localeZhHans from '@angular/common/locales/zh-Hans';
@@ -18,7 +18,7 @@ registerLocaleData(localeZhHans);<% if (i18n) { %>
 // i18n
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ALAIN_I18N_TOKEN } from 'yoyo-ng-module/theme';
+import { ALAIN_I18N_TOKEN } from '../../theme';
 import { I18NService } from '@core/i18n/i18n.service';
 
 // 加载i18n语言文件

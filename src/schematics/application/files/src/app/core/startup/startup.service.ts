@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { zip } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from 'yoyo-ng-module/theme';
-import { DA_SERVICE_TOKEN, ITokenService } from 'yoyo-ng-module/auth';
-import { ACLService } from 'yoyo-ng-module/acl';<% if (i18n) { %>
+import { MenuService, SettingsService, TitleService, ALAIN_I18N_TOKEN } from '../../theme';
+import { DA_SERVICE_TOKEN, ITokenService } from '../../auth';
+import { ACLService } from '../../acl';<% if (i18n) { %>
 import { TranslateService } from '@ngx-translate/core';
 import { I18NService } from '../i18n/i18n.service';<% } %>
 

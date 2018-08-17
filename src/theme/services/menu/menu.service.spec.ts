@@ -2,12 +2,12 @@ import { Injector } from '@angular/core';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { filter } from 'rxjs/operators';
 
-import { ACLService } from 'yoyo-ng-module/acl';
+import { ACLService } from '../../acl';
 import {
   ALAIN_I18N_TOKEN,
   AlainI18NServiceFake,
-} from 'yoyo-ng-module/theme/services/i18n/i18n';
-import { deepCopy } from 'yoyo-ng-module/util';
+} from '../../theme/services/i18n/i18n';
+import { deepCopy } from '../../util';
 
 import { Menu } from './interface';
 import { MenuService } from './menu.service';

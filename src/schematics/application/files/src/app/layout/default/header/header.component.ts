@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SettingsService } from 'yoyo-ng-module/theme';
+import { SettingsService } from '../../theme';
 
 @Component({
   selector: 'layout-header',

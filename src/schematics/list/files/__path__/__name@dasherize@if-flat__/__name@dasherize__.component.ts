@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
-import { _HttpClient, ModalHelper } from 'yoyo-ng-module/theme';
-import { SimpleTableColumn, SimpleTableComponent } from 'yoyo-ng-module/abc';
-import { SFSchema } from 'yoyo-ng-module/form';
+import { _HttpClient, ModalHelper } from '../../theme';
+import { SimpleTableColumn, SimpleTableComponent } from '../../abc';
+import { SFSchema } from '../../form';
 
 @Component({
   selector: '<%= selector %>',<% if(inlineTemplate) { %>

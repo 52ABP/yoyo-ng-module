@@ -12,7 +12,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
 } from '@angular/core';
-import { toNumber } from 'yoyo-ng-module/util';
+import { toNumber } from '../../../util';
 
 @Component({
   selector: 'g2-timeline',

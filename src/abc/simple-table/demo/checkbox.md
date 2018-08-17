@@ -7,7 +7,7 @@ title: 可选择
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableData } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, SimpleTableData } from '../../abc';
 
 @Component({
     selector: 'app-demo',

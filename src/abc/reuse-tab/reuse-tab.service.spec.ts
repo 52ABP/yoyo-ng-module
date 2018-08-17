@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, ActivatedRoute, RouteReuseStrategy, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import { MenuService } from 'yoyo-ng-module/theme';
+import { MenuService } from '../../theme';
 
 import { ReuseTabService } from './reuse-tab.service';
 import { ReuseTabStrategy } from './reuse-tab.strategy';

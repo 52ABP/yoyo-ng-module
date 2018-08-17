@@ -10,8 +10,8 @@ import {
   MenuService,
   ScrollService,
   _HttpClient,
-} from 'yoyo-ng-module/theme';
-import { DelonAuthModule } from 'yoyo-ng-module/auth';
+} from '../../theme';
+import { DelonAuthModule } from '../../auth';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 <% if (i18n) { %>

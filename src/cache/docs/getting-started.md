@@ -39,7 +39,7 @@ npm install --save yoyo-ng-module/cache
 在根模块 `AppModule` 导入 `DelonCacheModule`；
 
 ```ts
-import { DelonCacheModule } from 'yoyo-ng-module/mock';
+import { DelonCacheModule } from '../../mock';
 
 @NgModule({
   imports: [

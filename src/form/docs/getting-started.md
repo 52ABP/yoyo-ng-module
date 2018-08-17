@@ -36,7 +36,7 @@ npm install yoyo-ng-module/form --save
 导入 `DelonFormModule` 模块：
 
 ```typescript
-import { DelonFormModule } from 'yoyo-ng-module/form';
+import { DelonFormModule } from '../../form';
 
 @NgModule({
   imports: [
@@ -65,7 +65,7 @@ angular.json
 全局配置性可以通过在根模块或 `DelonModule` 里覆盖，例如：
 
 ```ts
-import { DelonFormConfig } from 'yoyo-ng-module/abc';
+import { DelonFormConfig } from '../../abc';
 export function fnDelonFormConfig(): DelonFormConfig {
   return Object.assign(new DelonFormConfig(), <DelonFormConfig>{
     // values

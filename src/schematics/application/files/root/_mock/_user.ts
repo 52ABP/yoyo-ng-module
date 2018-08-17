@@ -1,4 +1,4 @@
-import { MockRequest, MockStatusError } from 'yoyo-ng-module/mock';
+import { MockRequest, MockStatusError } from '../../mock';
 // TIPS: mockjs 一些优化细节见：http://ng-alain.com/docs/mock
 // import * as Mock from 'mockjs';
 

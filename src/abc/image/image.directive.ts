@@ -8,7 +8,7 @@ import {
   OnInit,
   SimpleChange,
 } from '@angular/core';
-import { deepCopy } from 'yoyo-ng-module/util';
+import { deepCopy } from '../../util';
 import { AdImageConfig } from './image.config';
 
 /**

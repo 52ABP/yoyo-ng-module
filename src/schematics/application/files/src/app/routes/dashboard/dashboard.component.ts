@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { _HttpClient } from 'yoyo-ng-module/theme';
+import { _HttpClient } from '../../theme';
 
 @Component({
   selector: 'app-dashboard',

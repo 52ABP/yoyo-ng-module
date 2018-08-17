@@ -12,8 +12,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { toBoolean } from 'yoyo-ng-module/util';
-import { deepCopy } from 'yoyo-ng-module/util';
+import { toBoolean } from '../../util';
+import { deepCopy } from '../../util';
 
 import { DelonFormConfig } from './config';
 import { di, retrieveSchema, FORMATMAPS, resolveIf } from './utils';

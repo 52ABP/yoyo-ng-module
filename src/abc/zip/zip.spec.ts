@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture, fakeAsync } from '@angular/core/testing';
-import { LazyService } from 'yoyo-ng-module/util';
+import { LazyService } from '../../util';
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import { Component, DebugElement } from '@angular/core';

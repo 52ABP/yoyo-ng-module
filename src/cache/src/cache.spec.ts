@@ -8,7 +8,7 @@ import { Injector } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { AlainThemeModule } from 'yoyo-ng-module/theme';
+import { AlainThemeModule } from '../../theme';
 
 import { DelonCacheModule } from '../cache.module';
 import { DC_STORE_STORAGE_TOKEN, ICacheStore, ICache } from './interface';

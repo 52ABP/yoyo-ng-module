@@ -8,7 +8,7 @@ title: 打印设计
 ```ts
 import { Component } from '@angular/core';
 import { NzMessageService, NzNotificationService } from 'ng-zorro-antd';
-import { LodopService, Lodop } from 'yoyo-ng-module/abc';
+import { LodopService, Lodop } from '../../abc';
 
 @Component({
     selector: 'app-demo',

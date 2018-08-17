@@ -7,7 +7,7 @@ title: 后端筛选和排序
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableFilter } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, SimpleTableFilter } from '../../abc';
 
 @Component({
     selector: 'app-demo',
