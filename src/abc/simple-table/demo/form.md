@@ -7,7 +7,7 @@ title: 搜索表单
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn } from '../../abc';
 
 @Component({
     selector: 'app-demo',

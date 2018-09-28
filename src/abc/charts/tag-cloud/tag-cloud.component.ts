@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { toNumber, toBoolean } from 'yoyo-ng-module/util';
+import { toNumber, toBoolean } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'g2-tag-cloud',

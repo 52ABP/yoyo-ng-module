@@ -17,7 +17,7 @@ npm install yoyo-ng-module/util --save
 导入 `DelonUtilModule` 模块：
 
 ```typescript
-import { DelonUtilModule } from 'yoyo-ng-module/util';
+import { DelonUtilModule } from 'yoyo-ng-module/src/util/index';
 
 @NgModule({
   imports: [
@@ -32,7 +32,7 @@ export class AppModule { }
 通用配置项，例如统一对 `ArrayService` 设置映射名称。
 
 ```ts
-import { DelonUtilConfig } from 'yoyo-ng-module/abc';
+import { DelonUtilConfig } from '../../abc';
 export function fnDelonUtilConfig(): DelonUtilConfig {
   return Object.assign(new DelonUtilConfig(), <DelonUtilConfig>{
     array: {
@@ -59,7 +59,7 @@ export class DelonModule {
 
 ```ts
 import { Component } from '@angular/core';
-import { yuan } from 'yoyo-ng-module/util';
+import { yuan } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'app-demo',

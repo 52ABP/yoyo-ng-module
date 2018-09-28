@@ -16,10 +16,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT, LocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService, SettingsService, MenuItem } from 'yoyo-ng-module/theme';
+import { MenuService, SettingsService, MenuItem } from 'yoyo-ng-module/src/theme/index';
 
 import { Nav } from './interface';
-import { ReuseTabService } from 'yoyo-ng-module/abc';
+import { ReuseTabService } from '../reuse-tab/reuse-tab.service';
 
 const SHOWCLS = 'nav-floating-show';
 const FLOATINGCLS = 'nav-floating';

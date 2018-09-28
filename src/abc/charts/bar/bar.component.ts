@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { toBoolean, toNumber } from 'yoyo-ng-module/util';
+import { toBoolean, toNumber } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'g2-bar',
@@ -51,7 +51,7 @@ export class G2BarComponent implements OnDestroy, OnChanges, OnInit {
   private _height = 0;
 
   @Input() padding: number[];
-  @Input() data: Array<{ x: any; y: any; [key: string]: any }>;
+  @Input() data: Array<{ x: any; y: any;[key: string]: any }>;
 
   @Input()
   get autoLabel() {
@@ -72,7 +72,7 @@ export class G2BarComponent implements OnDestroy, OnChanges, OnInit {
     private el: ElementRef,
     private cd: ChangeDetectorRef,
     private zone: NgZone,
-  ) {}
+  ) { }
 
   runInstall() {
     this.zone.runOutsideAngular(() => setTimeout(() => this.install(), 100));

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { toNumber, toBoolean } from 'yoyo-ng-module/util';
+import { toNumber, toBoolean } from 'yoyo-ng-module/src/util/index';
 
 import { NoticeItem } from './interface';
 

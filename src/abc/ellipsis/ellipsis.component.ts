@@ -5,7 +5,7 @@ import {
   Renderer2,
   ElementRef,
 } from '@angular/core';
-import { toNumber } from 'yoyo-ng-module/util';
+import { toNumber } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'ellipsis',

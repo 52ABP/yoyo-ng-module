@@ -9,7 +9,7 @@ title: 自定义列
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, SimpleTableChange, SimpleTableFilter } from '../../abc';
 
 @Component({
     selector: 'app-demo',

@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DelonUtilModule } from 'yoyo-ng-module/util';
+import { DelonUtilModule } from 'yoyo-ng-module/src/util/index';
 import { XlsxService } from './xlsx.service';
 import { XlsxDirective } from './xlsx.directive';
 import { XlsxConfig, DA_XLSX_CONFIG } from './interface';

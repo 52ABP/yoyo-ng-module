@@ -12,7 +12,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { toNumber } from 'yoyo-ng-module/util';
+import { toNumber } from 'yoyo-ng-module/src/util/index';
 import { AdErrorCollectConfig } from './error-collect.config';
 
 /**

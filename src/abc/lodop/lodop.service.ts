@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { Observable, of, Subject, Observer } from 'rxjs';
 
-import { LazyService } from 'yoyo-ng-module/util';
+import { LazyService } from 'yoyo-ng-module/src/util/index';
 
 import { Lodop, LodopResult, LodopPrintResult } from './interface';
 import { AdLodopConfig } from './lodop.config';

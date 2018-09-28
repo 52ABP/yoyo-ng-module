@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": ".",
+    "module": "es2015",
+    "target": "es5",
+    "lib": ["es2017", "dom"],
+    "types": [],
     "declaration": true,
     "stripInternal": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "module": "es2015",
-    "target": "es5",
-    "lib": ["es2015", "dom"],
-    "types": [],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
@@ -18,9 +19,8 @@
     "paths": {
       "@angular/core": ["node_modules/@angular/core"],
       "rxjs/*": ["node_modules/rxjs/*"],
-      "@abp/*": ["./src/abp/*"],
-      "yoyo-ng-module": ["./src/"],
-      "yoyo-ng-module/*": ["./src/*"]
+      "yoyo-ng-module":["./"],
+      "yoyo-ng-module/*":["./*"]
     }
   },
   "files": [
@@ -34,6 +34,10 @@
     "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true
+    "fullTemplateTypeCheck": false,
+    "preserveWhitespaces": true,
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": false,
+    "skipTemplateCodegen": true,
   }
 }

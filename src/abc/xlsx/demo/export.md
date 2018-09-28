@@ -7,7 +7,7 @@ title: 导出
 
 ```ts
 import { Component } from '@angular/core';
-import { SimpleTableColumn, XlsxService } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, XlsxService } from '../../abc';
 
 @Component({
   selector: 'app-demo',

@@ -7,7 +7,7 @@ title: 图表卡片
 
 ```ts
 import { Component } from '@angular/core';
-import { yuan } from 'yoyo-ng-module/util';
+import { yuan } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'app-demo',

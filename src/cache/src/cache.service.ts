@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as addSeconds_ from 'date-fns/add_seconds';
+import * as addSeconds from 'date-fns/add_seconds';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
@@ -13,15 +13,13 @@ import {
 } from './interface';
 import { DelonCacheConfig } from '../cache.config';
 
-const addSeconds = addSeconds_;
-
 @Injectable()
 export class CacheService implements OnDestroy {
   private readonly memory: Map<string, ICache> = new Map<string, ICache>();
   private readonly notifyBuffer: Map<
     string,
     BehaviorSubject<CacheNotifyResult>
-    > = new Map<string, BehaviorSubject<CacheNotifyResult>>();
+  > = new Map<string, BehaviorSubject<CacheNotifyResult>>();
   private meta: Set<string> = new Set<string>();
   private freq_tick = 3000;
   private freq_time: any;
@@ -213,7 +211,7 @@ export class CacheService implements OnDestroy {
               this._deepGet(ret, this.options.reName as string[], null),
             ),
             tap(v => this.set(key, v)),
-        );
+          );
       }
       return null;
     }

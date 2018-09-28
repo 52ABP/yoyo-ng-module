@@ -7,7 +7,7 @@ title: 自定义数据
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { SimpleTableColumn, SimpleTableFilter } from 'yoyo-ng-module/abc';
+import { SimpleTableColumn, SimpleTableFilter } from '../../abc';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 

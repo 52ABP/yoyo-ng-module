@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { toNumber } from 'yoyo-ng-module/util';
+import { toNumber } from 'yoyo-ng-module/src/util/index';
 
 @Component({
   selector: 'g2-mini-progress',
