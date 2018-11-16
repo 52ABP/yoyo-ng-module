@@ -1,7 +1,7 @@
 {
   "name": "yoyo-ng-module",
-  "version": "1.1.33",
-  "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和你NG ZORRO的内容  ",
+  "version": "1.1.35",
+  "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和NG ZORRO的内容,ng-zorro版本为1.6.0",
   "main": "./bundles/yoyo-ng-module.umd.js",
   "module": "./index.js",
   "scripts": {
@@ -18,7 +18,9 @@
     "antd",
     "ng-zorro-antd",
     "52abp",
-    "angular"
+    "angular",
+    "yoyo",
+    "yoyosoft"
   ],
   "private": false,
   "author": "ltm0203<werltm@hotmail.com>",

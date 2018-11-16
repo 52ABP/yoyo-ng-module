@@ -4,3 +4,6 @@
 
 # v1.1.32
 更新ng-zorro版本为1.6
+
+# v1.1.35
+修复 MessageService confirm 弹窗bug
