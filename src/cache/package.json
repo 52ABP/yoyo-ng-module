@@ -1,0 +1,28 @@
+{
+  "name": "@delon/cache",
+  "version": "0.0.0-PLACEHOLDER",
+  "author": "cipchk<cipchk@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ng-alain/delon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ng-alain/delon/issues"
+  },
+  "homepage": "https://github.com/ng-alain/delon#readme",
+  "keywords": [
+    "delon",
+    "ng-alain",
+    "alain",
+    "cache",
+    "angular cache",
+    "ng cache",
+    "ngx cache",
+    "antd",
+    "ng-zorro-antd",
+    "angular",
+    "component"
+  ],
+  "sideEffects": false
+}

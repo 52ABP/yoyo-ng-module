@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DelonUtilModule } from 'yoyo-ng-module/src/util/index';
+import { DelonUtilModule } from 'yoyo-ng-module/src/util';
 
 import { ImageDirective } from './image.directive';
-import { AdImageConfig } from './image.config';
+import { ImageConfig } from './image.config';
 
 const DIRECTIVES = [ImageDirective];
 
@@ -12,8 +12,8 @@ const DIRECTIVES = [ImageDirective];
   declarations: [...DIRECTIVES],
   exports: [...DIRECTIVES],
 })
-export class AdImageModule {
+export class ImageModule {
   static forRoot(): ModuleWithProviders {
-    return { ngModule: AdImageModule, providers: [AdImageConfig] };
+    return { ngModule: ImageModule, providers: [ImageConfig] };
   }
 }

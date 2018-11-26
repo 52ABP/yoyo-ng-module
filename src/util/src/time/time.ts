@@ -1,26 +1,14 @@
-import * as parse_ from 'date-fns/parse';
-import * as startOfWeek_ from 'date-fns/start_of_week';
-import * as endOfWeek_ from 'date-fns/end_of_week';
-import * as subWeeks_ from 'date-fns/sub_weeks';
-import * as startOfMonth_ from 'date-fns/start_of_month';
-import * as endOfMonth_ from 'date-fns/end_of_month';
-import * as subMonths_ from 'date-fns/sub_months';
-import * as startOfYear_ from 'date-fns/start_of_year';
-import * as endOfYear_ from 'date-fns/end_of_year';
-import * as subYears_ from 'date-fns/sub_years';
-import * as addDays_ from 'date-fns/add_days';
-
-const parse = parse_;
-const startOfWeek = startOfWeek_;
-const endOfWeek = endOfWeek_;
-const subWeeks = subWeeks_;
-const startOfMonth = startOfMonth_;
-const endOfMonth = endOfMonth_;
-const subMonths = subMonths_;
-const startOfYear = startOfYear_;
-const endOfYear = endOfYear_;
-const subYears = subYears_;
-const addDays = addDays_;
+import { parse,startOfWeek,endOfWeek,subWeeks,startOfMonth,endOfMonth,subMonths,startOfYear,endOfYear,subYears,addDays } from 'date-fns';
+// import startOfWeek from 'date-fns/start_of_week';
+// import endOfWeek from 'date-fns/end_of_week';
+// import subWeeks from 'date-fns/sub_weeks';
+// import startOfMonth from 'date-fns/start_of_month';
+// import endOfMonth from 'date-fns/end_of_month';
+// import subMonths from 'date-fns/sub_months';
+// import startOfYear from 'date-fns/start_of_year';
+// import endOfYear from 'date-fns/end_of_year';
+// import subYears from 'date-fns/sub_years';
+// import addDays from 'date-fns/add_days';
 
 /**
  * 获取时间范围
@@ -44,8 +32,9 @@ export function getTimeDistance(
 
   switch (type) {
     case 'today':
-    case '-today':
       return [time, time];
+    case '-today':
+      return [addDays(time, -1), time];
     case 'week':
       return [startOfWeek(time), endOfWeek(time)];
     case '-week':

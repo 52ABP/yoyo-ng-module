@@ -14,13 +14,12 @@ import {
   Renderer2,
   Inject,
   Optional,
-  TemplateRef,
 } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
 import { Subscription, combineLatest } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
-import { toNumber, toBoolean } from 'yoyo-ng-module/src/util/index';
+import { InputNumber, InputBoolean } from 'yoyo-ng-module/src/util';
+// import { ALAIN_I18N_TOKEN, AlainI18NService } from 'yoyo-ng-module/src/theme';
 
 import { ReuseTabService } from './reuse-tab.service';
 import {
@@ -31,128 +30,99 @@ import {
   ReuseContextI18n,
   ReuseContextCloseEvent,
   ReuseTitle,
-  CloseType,
-} from './interface';
+} from './reuse-tab.interfaces';
 import { ReuseTabContextService } from './reuse-tab-context.service';
-import { NzDropdownContextComponent, NzDropdownService } from 'ng-zorro-antd';
-import { LocalizationService } from '../../abp/localization/localization.service';
+import { LocalizationService } from 'yoyo-ng-module/src/abp';
 
 @Component({
   selector: 'reuse-tab',
-  template: `
-  <nz-tabset [nzSelectedIndex]="pos" [nzAnimated]="false" nzType="line">
-  <nz-tab *ngFor="let i of list; let index = index" [nzTitle]="titleTemplate">
-    <ng-template #titleTemplate>
-      <span [context-menu]="i" (click)="to($event, index)" class="name">
-        <i *ngIf="i.icon" [class]="i.icon"></i>
-        {{l(i.title)}}
-      </span>
-      <i *ngIf="i.closable" class="anticon anticon-close op" (click)="_close($event, index, false)"></i>
-    </ng-template>
-  </nz-tab>
-</nz-tabset>
-<reuse-tab-context [i18n]="i18n" (change)="cmChange($event)"></reuse-tab-context>
-  `,
-  // templateUrl: './reuse-tab.component.html',
+  templateUrl: './reuse-tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
   providers: [ReuseTabContextService],
   host: {
-    '[class.ad-rt]': 'true',
-    '[class.fixed]': 'fixed',
+    '[class.reuse-tab]': 'true',
   },
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
+  private el: HTMLElement;
   private sub$: Subscription;
   private i18n$: Subscription;
   list: ReuseItem[] = [];
   item: ReuseItem;
   pos = 0;
 
-  // region: properties
+  // #region fields
+
   /** 设置匹配模式 */
-  @Input() mode: ReuseTabMatchMode = ReuseTabMatchMode.Menu;
+  @Input()
+  mode: ReuseTabMatchMode = ReuseTabMatchMode.Menu;
   /** 选项文本国际化 */
-  @Input() i18n: ReuseContextI18n;
+  @Input()
+  i18n: ReuseContextI18n;
   /** 是否Debug模式 */
   @Input()
-  get debug() { return this._debug; }
-  set debug(value: any) {
-    this._debug = toBoolean(value);
-  }
-  private _debug = false;
+  @InputBoolean()
+  debug = false;
   /** 允许最多复用多少个页面 */
   @Input()
-  get max() {
-    return this._max;
-  }
-  set max(value: any) {
-    this._max = toNumber(value);
-  }
-  private _max: number;
+  @InputNumber()
+  max: number;
   /** 排除规则，限 `mode=URL` */
-  @Input() excludes: RegExp[];
+  @Input()
+  excludes: RegExp[];
   /** 允许关闭 */
   @Input()
-  get allowClose() {
-    return this._allowClose;
-  }
-  set allowClose(value: any) {
-    this._allowClose = toBoolean(value);
-  }
-  private _allowClose = true;
-  /** 是否固定 */
-  @Input()
-  get fixed() {
-    return this._fixed;
-  }
-  set fixed(value: any) {
-    this._fixed = toBoolean(value);
-  }
-  private _fixed = true;
+  @InputBoolean()
+  allowClose = true;
   /** 总是显示当前页 */
   @Input()
-  get showCurrent() {
-    return this._showCurrent;
-  }
-  set showCurrent(value: any) {
-    this._showCurrent = toBoolean(value);
-  }
-  private _showCurrent = true;
+  @InputBoolean()
+  showCurrent = true;
   /** 切换时回调 */
-  @Output() change: EventEmitter<ReuseItem> = new EventEmitter<ReuseItem>();
+  @Output()
+  readonly change = new EventEmitter<ReuseItem>();
   /** 关闭回调 */
-  @Output() close: EventEmitter<ReuseItem> = new EventEmitter<ReuseItem>();
-  // endregion
+  @Output()
+  readonly close = new EventEmitter<ReuseItem>();
 
-  /**
-   * 右键菜单服务
-   */
-  private _contextMenuDropdown: NzDropdownContextComponent;
+  // #endregion
 
   constructor(
-    public srv: ReuseTabService,
+    el: ElementRef,
+    private srv: ReuseTabService,
     private cd: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute,
-    private el: ElementRef,
     private render: Renderer2,
-    @Inject(DOCUMENT) private doc: any,
-    private localizationService: LocalizationService,
-    private nzDropdownService: NzDropdownService//右键菜单
-
+    // @Optional()
+    // @Inject(ALAIN_I18N_TOKEN)
+    // private i18nSrv: AlainI18NService,
+    private _localizationService: LocalizationService,
   ) {
+    this.el = el.nativeElement;
     const route$ = this.router.events.pipe(
       filter(evt => evt instanceof NavigationEnd),
     );
     this.sub$ = combineLatest(this.srv.change, route$).subscribe(([res, e]) =>
       this.genList(res as any),
     );
-
+    // if (this.i18nSrv) {
+    //   this.i18n$ = this.i18nSrv.change
+    //     .pipe(debounceTime(100))
+    //     .subscribe(() => this.genList());
+    // }
+    if (this._localizationService) {
+      // this.i18n$ = this.i18nSrv.change
+      //   .pipe(debounceTime(100))
+      //   .subscribe(() => this.genList());
+    }
   }
 
   private genTit(title: ReuseTitle): string {
-    return title.text;
+    return title.i18n && this._localizationService
+      ? this._localizationService.l(title.i18n)
+      : title.text;
   }
 
   private genList(notify?: ReuseTabNotify) {
@@ -217,13 +187,13 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   private visibility() {
     if (this.showCurrent) return;
     this.render.setStyle(
-      this.el.nativeElement,
+      this.el,
       'display',
       this.list.length === 0 ? 'none' : 'block',
     );
   }
 
-  // region: UI
+  // #region UI
 
   cmChange(res: ReuseContextCloseEvent) {
     switch (res.type) {
@@ -278,22 +248,10 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     return false;
   }
 
-  // endregion
+  // #endregion
 
   ngOnInit(): void {
-    this.setClass();
-
     this.genList();
-  }
-
-  private setClass() {
-    const body = this.doc.querySelector('body');
-    const bodyCls = `has-ad-rt`;
-    if (this.fixed) {
-      this.render.addClass(body, bodyCls);
-    } else {
-      this.render.removeClass(body, bodyCls);
-    }
   }
 
   ngOnChanges(
@@ -304,57 +262,12 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     if (changes.mode) this.srv.mode = this.mode;
     this.srv.debug = this.debug;
 
-    this.setClass();
     this.cd.detectChanges();
   }
 
   ngOnDestroy(): void {
-    this.sub$.unsubscribe();
-    if (this.i18n$) this.i18n$.unsubscribe();
+    const { i18n$, sub$ } = this;
+    sub$.unsubscribe();
+    if (i18n$) i18n$.unsubscribe();
   }
-
-
-  l(key: string, ...args: any[]): string {
-    return this.localizationService.l(key, args);
-  }
-
-  /**
- * 打开右键菜单
- * @param $event 鼠标事件
- * @param template 创建右键的模板内容
- */
-  openContextMenu($event: MouseEvent, template: TemplateRef<void>): void {
-    this._contextMenuDropdown = this.nzDropdownService.create($event, template);
-  }
-  /**
-   * 右键菜单项点击事件
-   * @param $event 当前项点击事件
-   * @param closeType 关闭类型
-   * @param item 当前路由复用项
-   */
-  contextMenuItemClick($event: MouseEvent, closeType: CloseType, item: ReuseItem): void {
-    if (closeType === 'close' && !item.closable) return;
-    if (closeType === 'closeRight' && item.last) return;
-    let includeNonCloseable = $event.ctrlKey; //是否强制清除（按Ctrl键）
-    switch (closeType) { //'close' | 'closeOther' | 'closeRight' | 'clear'
-      case 'close':
-        this.srv.close(item.url, includeNonCloseable);
-        break;
-      case 'closeOther':
-        this.srv.closeOther(item.url, includeNonCloseable);
-        break;
-      case 'closeRight':
-        this.srv.closeRight(item.url, includeNonCloseable);
-        break;
-      case 'clear':
-        this.srv.clear(includeNonCloseable);
-        break;
-      default:
-        this.srv.refresh();
-        break;
-    }
-    //关闭右键菜单
-    this._contextMenuDropdown.close();
-  }
-
 }

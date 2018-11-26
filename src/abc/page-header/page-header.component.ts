@@ -1,3 +1,4 @@
+import { MenuIcon } from 'yoyo-ng-module/src/theme';
 import {
   Component,
   Input,
@@ -5,219 +6,249 @@ import {
   ContentChild,
   OnInit,
   OnChanges,
+  Inject,
   Optional,
   ViewChild,
   ElementRef,
   AfterViewInit,
   Renderer2,
-  Inject
+  OnDestroy,
 } from '@angular/core';
-import { Router } from '@angular/router';
-import { AdPageHeaderConfig } from './page-header.config';
-import { toBoolean, isEmpty } from 'yoyo-ng-module/src/util/index';
-import { TitleService, MenuItem, MenuService } from 'yoyo-ng-module/src/theme/index';
-import { ReuseTabService } from 'yoyo-ng-module/src/abc/index';
-import { LocalizationService } from 'yoyo-ng-module/src/abp/index';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { NzAffixComponent } from 'ng-zorro-antd';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
+import { isEmpty, InputBoolean, InputNumber } from 'yoyo-ng-module/src/util';
+import {
+  MenuService,
+  // ALAIN_I18N_TOKEN,
+  // AlainI18NService,
+  Menu,
+  TitleService,
+  SettingsService,
+} from 'yoyo-ng-module/src/theme';
+import { ReuseTabService } from 'yoyo-ng-module/src/abc/reuse-tab';
+
+import { PageHeaderConfig } from './page-header.config';
+import { LocalizationService } from 'yoyo-ng-module/src/abp';
 
 @Component({
   selector: 'page-header',
-  template: `
-  <ng-container *ngIf="!breadcrumb; else breadcrumb">
-    <nz-breadcrumb *ngIf="paths && paths.length > 0">
-      <nz-breadcrumb-item *ngFor="let i of paths;let isLast=last;">
-        <ng-container *ngIf="i.link">
-            <a [routerLink]="i.link" *ngIf="!isLast&&home_link_enabled">       
-                  <i *ngIf="i.icon" class="{{i.icon}}"></i> 
-                  {{i.title}}
-            </a>
-            <a *ngIf="!isLast&&!home_link_enabled">       
-                <i *ngIf="i.icon" class="{{i.icon}}"></i> 
-                {{i.title}}
-            </a>
-            <a *ngIf="isLast">       
-                  <i *ngIf="i.icon" class="{{i.icon}}"></i> 
-                  {{i.title}}
-            </a>
-         </ng-container>
-        <ng-container *ngIf="!i.link">
-            <i *ngIf="i.icon" class="{{i.icon}}"></i> 
-            {{i.title}}
-        </ng-container>
-      </nz-breadcrumb-item>
-    </nz-breadcrumb>
-  </ng-container>
-  <div class="detail">
-    <div *ngIf="logo" class="logo"><ng-template [ngTemplateOutlet]="logo"></ng-template></div>
-    <div class="main">
-      <div class="row">
-        <h1 *ngIf="title" class="title">
-          {{title}}          
-            <span *ngIf="desc" class="text-sm text-grey-dark">
-              <nz-divider nzType="vertical"></nz-divider>
-              {{desc}}
-            </span>     
-        </h1>       
-        <div *ngIf="action" class="action">
-        <ng-template [ngTemplateOutlet]="action"></ng-template>
-        </div>       
-      </div>
-      <div class="row">
-        <div class="desc" (cdkObserveContent)="checkContent()" #conTpl><ng-content></ng-content><ng-template [ngTemplateOutlet]="content"></ng-template></div>
-        <div *ngIf="extra" class="extra"><ng-template [ngTemplateOutlet]="extra"></ng-template></div>
-      </div>
-    </div>
-  </div>
-  <ng-template [ngTemplateOutlet]="tab"></ng-template>
-  `,
-  host: {
-    '[class.content__title]': 'true',
-    '[class.ad-ph]': 'true',
-  },
+  templateUrl: './page-header.component.html',
   preserveWhitespaces: false,
 })
-export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
+export class PageHeaderComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   private inited = false;
-  @ViewChild('conTpl') private conTpl: ElementRef;
-  private _menus: MenuItem[];
+  private i18n$: Subscription;
+  private set$: Subscription;
+  private routerEvent$: Subscription;
+  @ViewChild('conTpl')
+  private conTpl: ElementRef;
+  @ViewChild('affix')
+  private affix: NzAffixComponent;
+  private _menus: Menu[];
 
   private get menus() {
     if (this._menus) {
       return this._menus;
     }
-    this._menus = this.menuSrv.getPathByUrl(this.route.url);
+    this._menus = this.menuSrv.getPathByUrl(this.router.url.split('?')[0], this.recursiveBreadcrumb);
 
     return this._menus;
   }
 
-  // region fields
+  // #region fields
 
-  @Input() title: string;
+  _title: string;
+  _titleTpl: TemplateRef<any>;
+  @Input()
+  set title(value: string | TemplateRef<any>) {
+    if (value instanceof TemplateRef) {
+      this._title = null;
+      this._titleTpl = value;
+    } else {
+      this._title = value;
+    }
+  }
 
-  /**
-   * 页面描述
-   */
-  @Input() desc: string;
+  @Input()
+  @InputBoolean()
+  loading = false;
 
-  @Input() home: string;
+  @Input()
+  @InputBoolean()
+  wide = false;
 
-  @Input() home_link: string;
+  @Input()
+  home: string;
 
-  //首页链接是否可点击
-  @Input() home_link_enabled = true;
+  @Input()
+  homeLink: string;
 
-  @Input() home_i18n: string;
+  @Input()
+  homeI18n: string;
+
+  @Input()
+  icon: string | MenuIcon;
 
   /**
    * 自动生成导航，以当前路由从主菜单中定位
    */
   @Input()
-  get autoBreadcrumb() {
-    return this._autoBreadcrumb;
-  }
-  set autoBreadcrumb(value: any) {
-    this._autoBreadcrumb = toBoolean(value);
-  }
-  private _autoBreadcrumb = true;
+  @InputBoolean()
+  autoBreadcrumb: boolean;
 
   /**
    * 自动生成标题，以当前路由从主菜单中定位
    */
   @Input()
-  get autoTitle() {
-    return this._autoTitle;
-  }
-  set autoTitle(value: any) {
-    this._autoTitle = toBoolean(value);
-  }
-  private _autoTitle = true;
+  @InputBoolean()
+  autoTitle: boolean;
 
   /**
-   * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下
+   * 是否自动将标题同步至 `TitleService`、`ReuseService` 下，仅 `title` 为 `string` 类型时有效
    */
   @Input()
-  get titleSync() {
-    return this._titleSync;
-  }
-  set titleSync(value: any) {
-    this._titleSync = toBoolean(value);
-  }
-  private _titleSync = false;
+  @InputBoolean()
+  syncTitle: boolean;
+
+  @Input()
+  @InputBoolean()
+  fixed: boolean;
+
+  @Input()
+  @InputNumber()
+  fixedOffsetTop: number;
 
   paths: any[] = [];
 
-  @ContentChild('breadcrumb') breadcrumb: TemplateRef<any>;
+  @Input()
+  breadcrumb: TemplateRef<any>;
 
-  @ContentChild('logo') logo: TemplateRef<any>;
+  @Input()
+  @InputBoolean()
+  recursiveBreadcrumb: boolean;
 
-  @ContentChild('action') action: TemplateRef<any>;
+  @Input()
+  logo: TemplateRef<any>;
 
-  @ContentChild('content') content: TemplateRef<any>;
+  @Input()
+  action: TemplateRef<any>;
 
-  @ContentChild('extra') extra: TemplateRef<any>;
+  @Input()
+  content: TemplateRef<any>;
 
-  @ContentChild('tab') tab: TemplateRef<any>;
+  @Input()
+  extra: TemplateRef<any>;
 
-  // endregion
+  @Input()
+  tab: TemplateRef<any>;
+
+  // #endregion
 
   constructor(
-    cog: AdPageHeaderConfig,
+    cog: PageHeaderConfig,
+    settings: SettingsService,
     private renderer: Renderer2,
-    private route: Router,
+    private router: Router,
     private menuSrv: MenuService,
+    // @Optional()
+    // @Inject(ALAIN_I18N_TOKEN)
+    // private i18nSrv: AlainI18NService,
+    private _localizationService: LocalizationService,
     @Optional()
     @Inject(TitleService)
     private titleSrv: TitleService,
+    @Optional()
     @Inject(ReuseTabService)
     private reuseSrv: ReuseTabService,
-    private localizationSrv: LocalizationService,
-
   ) {
     Object.assign(this, cog);
+    // if (this.i18nSrv) {
+    //   this.i18n$ = this.i18nSrv.change.subscribe(() => this.refresh());
+    // }
+    if (this._localizationService) {
+      // this.i18n$ = this._localizationService.change.subscribe(() => this.refresh());
+    }
+    this.set$ = settings.notify
+      .pipe(
+        filter(
+          w => this.affix && w.type === 'layout' && w.name === 'collapsed',
+        ),
+      )
+      .subscribe(() => this.affix.updatePosition({}));
+    this.routerEvent$ = this.router.events
+      .pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd)
+      )
+      .subscribe(
+        (event: RouterEvent) => {
+          this._menus = null;
+          this.refresh();
+        }
+      );
   }
 
   refresh() {
     this.setTitle().genBreadcrumb();
   }
 
-  genBreadcrumb() {
-    if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) return;
+  private genBreadcrumb() {
+    if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0)
+      return;
     const paths: any[] = [];
     this.menus.forEach(item => {
       if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
         return;
-      let title = this.l(item.name);
-      paths.push({ title, link: item.route && [item.route], icon: item.icon });
+      let title = item.text;
+      // if (item.i18n && this.i18nSrv) title = this.i18nSrv.fanyi(item.i18n);
+      if (item.i18n && this._localizationService) title = this._localizationService.l(item.i18n);
+
+      paths.push({ title, link: item.link && [item.link], icon: item.icon });
     });
     // add home
     if (this.home) {
-      let homeBreadcrumb = {
-        title: this.l(this.home),
-        link: [this.home_link],
-        icon: 'anticon anticon-home'
-      };
-      paths.splice(0, 0, homeBreadcrumb);
+      paths.splice(0, 0, {
+        // title:
+        //   (this.homeI18n &&
+        //     this.i18nSrv &&
+        //     this.i18nSrv.fanyi(this.homeI18n)) ||
+        //   this.home,
+        title:
+          (this.homeI18n &&
+            this._localizationService &&
+            this._localizationService.l(this.homeI18n)) ||
+          this.home,
+        link: [this.homeLink],
+        icon: this.icon
+      });
     }
     this.paths = paths;
     return this;
   }
-  setTitle() {
+
+  private setTitle() {
     if (
-      typeof this.title === 'undefined' &&
+      typeof this._title === 'undefined' &&
+      typeof this._titleTpl === 'undefined' &&
       this.autoTitle &&
       this.menus.length > 0
     ) {
       const item = this.menus[this.menus.length - 1];
-      let title = item.name;
-      this.title = title;
+      let title = item.text;
+      // if (item.i18n && this.i18nSrv) title = this.i18nSrv.fanyi(item.i18n);
+      if (item.i18n && this._localizationService) title = this._localizationService.l(item.i18n);
+      this._title = title;
     }
 
-    if (this.titleSync) {
+    if (this._title && this.syncTitle) {
       if (this.titleSrv) {
-        this.titleSrv.setTitle(this.title);
+        this.titleSrv.setTitle(this._title);
       }
       if (this.reuseSrv) {
-        this.reuseSrv.title = this.title;
+        this.reuseSrv.title = this._title;
       }
     }
 
@@ -245,7 +276,9 @@ export class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.inited) this.refresh();
   }
 
-  l(key: string, ...args: any[]): string {
-    return this.localizationSrv.l(key, args);
+  ngOnDestroy(): void {
+    if (this.i18n$) this.i18n$.unsubscribe();
+    this.set$.unsubscribe();
+    this.routerEvent$.unsubscribe();
   }
 }

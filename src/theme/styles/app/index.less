@@ -2,35 +2,20 @@
 @import "./mixins/index";
 @import "./_functions";
 
-// antd patch
-@import "./_antd-patch";
+// Angular
+@import "./ng/index";
+
+// Antd patch
+@import "./antd/index";
 
 // Core CSS
-@import "./router";
 @import "./type";
 
-// Layout
-@import "./layout";
-@import "./header";
-@import "./sidebar";
-@import "./scrollbar";
+// widgets
+@import "./widgets/index";
 
-// Component
-@import "./masonry-grid";
-@import "./widget";
-@import "./placeholder";
-@import "./half-float";
-@import "./router-progress-bar";
-@import "./badge";
-@import "./table";
-@import "./form";
+// @delon
+@import "./delon/index";
 
-// pro
-@import "./pro/form";
-
-// yoyo-ng-module
-@import "./delon/form";
-
-// Other
+// Utils
 @import "./utils/index";
-@import "./acl";

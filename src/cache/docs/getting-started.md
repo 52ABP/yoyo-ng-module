@@ -8,7 +8,7 @@ type: Documents
 
 通常把一些远程数据缓存在内存或 `localStorage` 持久化，目的是为了减少 Http 请求的成本；这样的数据通常是字典、城市数据等。
 
-缓存的获取应该是非常简单的，我们不应该把时间浪费在如何保证加载这件事情上，因此 `yoyo-ng-module/src/cache` 更多是以**约定**为前提。`key` 作为缓存的唯一键值，它不应该只是单纯的一个标识符，如果遵守某种约定它的存在会更有价值。`yoyo-ng-module/src/cache` 默认情况下不光把 `key` 当作唯一标识符，同时它还是一个用于获取远程数据的有效HTTP，例如：
+缓存的获取应该是非常简单的，我们不应该把时间浪费在如何保证加载这件事情上，因此 `@delon/cache` 更多是以**约定**为前提。`key` 作为缓存的唯一键值，它不应该只是单纯的一个标识符，如果遵守某种约定它的存在会更有价值。`@delon/cache` 默认情况下不光把 `key` 当作唯一标识符，同时它还是一个用于获取远程数据的有效HTTP，例如：
 
 ```ts
 cacheService.get('/data/unit');
@@ -22,7 +22,7 @@ cacheService.set('/data/unit', [ '个', '件' ]);
 
 才能够确保获取到缓存数据。
 
-而对于 `yoyo-ng-module/src/cache` 而言，你无须 `set` 方法，直接使用 `get` 获取到单位字典，因为我们有一种**约定**，当缓存不存在透过 `key` 作为HTTP请求数据缓存后再返回。
+而对于 `@delon/cache` 而言，你无须 `set` 方法，直接使用 `get` 获取到单位字典，因为我们有一种**约定**，当缓存不存在透过 `key` 作为HTTP请求数据缓存后再返回。
 
 缓存的获取与设置都是通过 [CacheService](/cache/service) 来操作，你只需要将 `CacheService` 导入对应的类当中即可。
 
@@ -31,7 +31,7 @@ cacheService.set('/data/unit', [ '个', '件' ]);
 **安装**
 
 ```bash
-npm install --save yoyo-ng-module/cache
+yarn add @delon/cache
 ```
 
 **注册**
@@ -39,7 +39,7 @@ npm install --save yoyo-ng-module/cache
 在根模块 `AppModule` 导入 `DelonCacheModule`；
 
 ```ts
-import { DelonCacheModule } from 'yoyo-ng-module/mock';
+import { DelonCacheModule } from 'yoyo-ng-module/src/cache';
 
 @NgModule({
   imports: [
