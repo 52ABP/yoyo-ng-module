@@ -1,6 +1,6 @@
 {
   "name": "yoyo-ng-module",
-  "version": "1.1.35",
+  "version": "2.0.0",
   "description": "服务于52ABP模板的前端开源的相关组件内容。整合了ng-alain和NG ZORRO的内容,ng-zorro版本为1.8.0",
   "main": "./bundles/yoyo-ng-module.umd.js",
   "module": "./index.js",
@@ -32,9 +32,9 @@
   "homepage": "https://github.com/52ABP/yoyo-ng-module#readme",
   "peerDependencies": {
     "abp-web-resources": "^3.7.0",
+    "extend": "^3.0.2",
     "ng-zorro-antd": "^1.8.0",
-    "qrious": "^4.0.2",
-	"extend": "^3.0.2",
+    "qrious": "^4.0.2"
   },
   "dependencies": {
     "tslib": "^1.9.0"
