@@ -108,7 +108,7 @@ export class MenuService implements OnDestroy {
       //   item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
 
       item.text =
-      item.i18n && this._localizationService ? this._localizationService.l(item.i18n) : item.text;
+        item.i18n && this._localizationService ? this._localizationService.l(item.i18n) : item.text;
 
       // group
       item.group = item.group !== false;
@@ -120,7 +120,7 @@ export class MenuService implements OnDestroy {
       // if (item.acl && this.aclService) {
       //   item._hidden = !this.aclService.can(item.acl);
       // }
-      if (item.acl && this._permissionService) {
+      if (!item._hidden && item.acl && this._permissionService) {
         item._hidden = !this._permissionService.isGranted(item.acl);
       }
 
@@ -163,7 +163,7 @@ export class MenuService implements OnDestroy {
     }
     let _data = this.data[0].children[pos];
     // if (_data.i18n && this.i18nSrv) _data.text = this.i18nSrv.fanyi(_data.i18n);
-     if (_data.i18n && this._localizationService) _data.text = this._localizationService.l(_data.i18n);
+    if (_data.i18n && this._localizationService) _data.text = this._localizationService.l(_data.i18n);
     _data = Object.assign(_data, {
       shortcutRoot: true,
       _type: 3,
