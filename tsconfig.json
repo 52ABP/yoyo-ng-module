@@ -15,6 +15,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports":true,
     "outDir": "dist",
     "paths": {
       "@angular/core": ["node_modules/@angular/core"],
@@ -31,7 +32,8 @@
     "src/theme/index.ts",
     "src/util/index.ts",
     "src/typings.d.ts",
-    "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts"
+    "./node_modules/abp-web-resources/Abp/Framework/scripts/abp.d.ts",
+    "./node_modules/date-fns/typings.d.ts"
   ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
@@ -39,5 +41,6 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": false,
     "skipTemplateCodegen": true,
+    "enableResourceInlining": true
   }
 }

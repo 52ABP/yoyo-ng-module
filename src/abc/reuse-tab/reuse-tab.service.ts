@@ -1,13 +1,17 @@
-import { Injectable, OnDestroy, Optional, Injector } from '@angular/core';
-import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
+import { Injectable, OnDestroy, Injector } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { MenuService } from 'yoyo-ng-module/src/theme/index';
+import { MenuService, MenuIcon } from 'yoyo-ng-module/src/theme';
 import {
   ReuseTabCached,
   ReuseTabMatchMode,
   ReuseTabNotify,
   ReuseTitle,
-} from './interface';
+} from './reuse-tab.interfaces';
 
 /**
  * 路由复用类，提供复用所需要一些基本接口
@@ -20,15 +24,15 @@ export class ReuseTabService implements OnDestroy {
   private _debug = false;
   private _mode = ReuseTabMatchMode.Menu;
   private _excludes: RegExp[] = [];
-  private _cachedChange: BehaviorSubject<ReuseTabNotify> = new BehaviorSubject<
+  private _cachedChange: BehaviorSubject<
     ReuseTabNotify
-    >(null);
+    > = new BehaviorSubject<ReuseTabNotify>(null);
   private _cached: ReuseTabCached[] = [];
   private _titleCached: { [url: string]: ReuseTitle } = {};
   private _closableCached: { [url: string]: boolean } = {};
   private removeUrlBuffer: string;
 
-  // region: public
+  // #region public
 
   /** 当前路由地址 */
   get curUrl() {
@@ -126,27 +130,6 @@ export class ReuseTabService implements OnDestroy {
     this.di('close tag', url);
     return true;
   }
-
-  /**
-   * 根据URL关闭其他标签
-   * @param url 当前URL
-   * @param includeNonCloseable [includeNonCloseable=false] 是否强制包含不可关闭
-   */
-  closeOther(url: string, includeNonCloseable = false) {
-    this._cached.forEach(w => {
-      if (w.url !== url) {
-        if (!includeNonCloseable && w.closable) this.destroy(w._handle);
-      }
-    });
-    //过滤出当前标签，其他标签已经关闭，只显示当前标签
-    this._cached = this._cached.filter(
-      w => w.url === url
-    );
-    this.removeUrlBuffer = null;
-
-    this._cachedChange.next({ active: 'closeOther', list: this._cached });
-  }
-
   /**
    * 清除右边
    *
@@ -244,20 +227,23 @@ export class ReuseTabService implements OnDestroy {
     if (this._titleCached[url]) return this._titleCached[url];
 
     if (route && route.data && (route.data.titleI18n || route.data.title))
-      return <ReuseTitle>{ text: route.data.title, i18n: route.data.titleI18n };
+      return <ReuseTitle>{
+        text: route.data.title,
+        i18n: route.data.titleI18n,
+      };
 
-    const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-    return menu ? { text: menu.name, i18n: menu.name } : { text: url };
+    const menu =
+      this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+    return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
   }
-
   /**
-   * 获取菜单对应的图标，如果为空，返回anticon-appstore-o图标
+   * 获取菜单对应的图标，如果为空，返回undefined
    * @param url 路由地址
    * @param route 当前激活路由
    */
-  getIcon(url: string, route?: ActivatedRouteSnapshot): string {
+  getIcon(url: string, route?: ActivatedRouteSnapshot): string | MenuIcon {
     const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
-    return menu ? menu.icon : 'anticon anticon-appstore-o';
+    return menu && menu.icon ? menu.icon : undefined;
   }
   /**
    * 清除标题缓存
@@ -293,7 +279,8 @@ export class ReuseTabService implements OnDestroy {
     if (route && route.data && typeof route.data.reuseClosable === 'boolean')
       return route.data.reuseClosable;
 
-    const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+    const menu =
+      this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
     if (menu && typeof menu.reuseClosable === 'boolean')
       return menu.reuseClosable;
 
@@ -356,9 +343,9 @@ export class ReuseTabService implements OnDestroy {
   refresh(data?: any) {
     this._cachedChange.next({ active: 'refresh', data });
   }
-  // endregion
+  // #endregion
 
-  // region: privates
+  // #region privates
 
   private destroy(_handle: any) {
     if (_handle && _handle.componentRef && _handle.componentRef.destroy)
@@ -371,15 +358,12 @@ export class ReuseTabService implements OnDestroy {
     console.warn(...args);
   }
 
-  // endregion
+  // #endregion
 
-  constructor(
-    private injector: Injector,
-    @Optional() private menuService: MenuService,
-  ) { }
+  constructor(private injector: Injector, private menuService: MenuService) { }
 
   private getMenu(url: string) {
-    const menus = this.menuService ? this.menuService.getPathByUrl(url) : [];
+    const menus = this.menuService.getPathByUrl(url);
     if (!menus || menus.length === 0) return null;
     return menus.pop();
   }
@@ -410,7 +394,6 @@ export class ReuseTabService implements OnDestroy {
    * 存储
    */
   store(_snapshot: ActivatedRouteSnapshot, _handle: any) {
-    if (this.count >= this._max) this._cached.shift();
     const url = this.getUrl(_snapshot);
     const idx = this.index(url);
 
@@ -423,6 +406,7 @@ export class ReuseTabService implements OnDestroy {
     };
     if (idx === -1) {
       this._cached.push(item);
+      if (this.count > this._max) this._cached.shift();
     } else {
       this._cached[idx] = item;
     }
