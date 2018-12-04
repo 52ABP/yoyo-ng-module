@@ -36,7 +36,7 @@
     "./node_modules/date-fns/typings.d.ts"
   ],
   "angularCompilerOptions": {
-    "fullTemplateTypeCheck": false,
+    "fullTemplateTypeCheck": true,
     "preserveWhitespaces": true,
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": false,
